@@ -1,4 +1,4 @@
-import ParticipentDataRow from "../../../components/Dashboard/TableRows/ParticipentDataRow";
+import ParticipetedDataRow from "../../../components/Dashboard/TableRows/ParticipetedDataRow";
 const MyOrders = () => {
   return (
     <>
@@ -55,7 +55,7 @@ const MyOrders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <ParticipentDataRow />
+                  <ParticipetedDataRow />
                 </tbody>
               </table>
             </div>

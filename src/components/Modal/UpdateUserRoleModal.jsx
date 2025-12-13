@@ -33,8 +33,8 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, role }) => {
                     name='role'
                     id=''
                   >
-                    <option value='customer'>Customer</option>
-                    <option value='seller'>Seller</option>
+                    <option value='customer'>Participent</option>
+                    <option value='seller'>ContestCreator</option>
                     <option value='admin'>Admin</option>
                   </select>
                 </div>

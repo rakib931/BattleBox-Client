@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DeleteModal from "../../Modal/DeleteModal";
-const ParticipentDataRow = () => {
+const ParticipetedDataRow = () => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
 
@@ -51,4 +51,4 @@ const ParticipentDataRow = () => {
   );
 };
 
-export default ParticipentDataRow;
+export default ParticipetedDataRow;

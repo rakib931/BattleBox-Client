@@ -14,6 +14,7 @@ import ManageOrders from "../pages/Dashboard/ContestCreator/ManageOrders";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import ContestDetails from "../pages/ContestDetails/ContestDetails";
+import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "creator-request",
+        element: (
+          <PrivateRoute>
+            <ContestCreatorReq />
           </PrivateRoute>
         ),
       },

@@ -11,11 +11,7 @@ const UserDataRow = () => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 '>Customer</p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className=''>Unavailable</p>
-      </td>
-
+      </td> 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span
           onClick={() => setIsOpen(true)}

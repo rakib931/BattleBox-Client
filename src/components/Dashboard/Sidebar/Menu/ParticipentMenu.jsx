@@ -20,7 +20,7 @@ const ParticipentMenu = () => {
       >
         <GrUserAdmin className="w-5 h-5" />
 
-        <span className="mx-4 font-medium">Become A Contest Provider</span>
+        <span className="mx-4 font-medium">Become A Contest Creator</span>
       </div>
 
       <ContestCreatorModal closeModal={closeModal} isOpen={isOpen} />
