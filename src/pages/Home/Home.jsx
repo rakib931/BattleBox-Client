@@ -1,11 +1,14 @@
 import Contests from "../../components/Home/Contests";
+import ContestBanner from "./ContestBanner";
+import WinnersSection from "./WinersSection";
 const Home = () => {
   return (
     <div>
-      <h1 className="text-6xl text-center">Banner</h1>
+      {/* Banner section  */}
+      <ContestBanner />
       <Contests />
-      <h1 className="text-6xl text-center">Winers</h1>
-      {/* More components */}
+      {/* winers section */}
+      <WinnersSection />
     </div>
   );
 };
