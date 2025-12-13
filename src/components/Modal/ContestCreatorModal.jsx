@@ -5,7 +5,6 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 const ContestCreatorModal = ({ closeModal, isOpen }) => {
   const { user } = useAuth();
-  console.log(user);
   const {
     register,
     handleSubmit,
@@ -22,15 +21,15 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
       organization,
       experience,
       message,
+      role: "participent",
     };
-    console.log(providerData);
     try {
       const result = await axios.post(
-        `${import.meta.env.VITE_API_URL}/manage-creator-req`,
+        `${import.meta.env.VITE_API_URL}/contest-creator-req`,
         providerData
       );
       console.log(result.data);
-      toast.success("submited");
+      toast.success("Request has been submited");
     } catch (err) {
       toast.error(err?.response?.data?.messege);
     } finally {

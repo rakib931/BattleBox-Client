@@ -1,8 +1,25 @@
 import React from "react";
-import UserDataRow from "../../../components/Dashboard/TableRows/UserDataRow";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import ContestCreatorDataRow from "../../../components/Dashboard/TableRows/ContestCreatorDataRow";
 
 const ContestCreatorReq = () => {
-  // const {} = useQuery
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const {
+    data: requests = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["manage-creator-eq", user?.email],
+    queryFn: async () => {
+      const result = await axiosSecure("/manage-creator-req");
+      return result.data;
+    },
+  });
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
@@ -32,7 +49,13 @@ const ContestCreatorReq = () => {
                 </tr>
               </thead>
               <tbody>
-                <UserDataRow />
+                {requests.map((request) => (
+                  <ContestCreatorDataRow
+                    refetch={refetch}
+                    key={request._id}
+                    request={request}
+                  />
+                ))}
               </tbody>
             </table>
           </div>
