@@ -15,6 +15,7 @@ import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import ContestDetails from "../pages/ContestDetails/ContestDetails";
 import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
+import AllContest from "../pages/AllContests/AllContests";
 
 export const router = createBrowserRouter([
   {
@@ -27,8 +28,16 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/all-contest",
+        element: <AllContest />,
+      },
+      {
         path: "/plant/:id",
-        element: <ContestDetails />,
+        element: (
+          <PrivateRoute>
+            <ContestDetails />
+          </PrivateRoute>
+        ),
       },
     ],
   },

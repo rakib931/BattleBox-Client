@@ -1,14 +1,37 @@
 import Container from "../Container";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
 import logo from "../../../assets/images/logo.png";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-
+  const links = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 mr-2 border-blue-600"
+            : "text-gray-600 hover:text-blue-600 mr-2"
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/all-contest"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600"
+            : "text-gray-600 hover:text-blue-600"
+        }
+      >
+        All Contest
+      </NavLink>
+    </>
+  );
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4">
@@ -16,8 +39,9 @@ const Navbar = () => {
           <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
             <Link to="/">
-              <img src={logo} alt="logo" height={'50'} width={'70'} />
+              <img src={logo} alt="logo" height={"50"} width={"70"} />
             </Link>
+            <div className="hidden md:block">{links}</div>
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">

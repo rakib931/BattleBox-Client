@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-
+import Countdown from "../../pages/ContestDetails/Countdown";
+const deadline = "2025-12-31T23:59:00.000Z";
 const Card = () => {
   return (
     <Link
@@ -40,6 +41,9 @@ const Card = () => {
         <div className="font-semibold text-lg">Participants: 10</div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold"> Price: 15$</div>
+        </div>
+        <div>
+          <Countdown deadline={deadline} />
         </div>
       </div>
     </Link>

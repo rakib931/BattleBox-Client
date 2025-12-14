@@ -3,6 +3,7 @@ import Heading from "../../components/Shared/Heading";
 import Button from "../../components/Shared/Button/Button";
 import PurchaseModal from "../../components/Modal/PurchaseModal";
 import { useState } from "react";
+import Countdown from "./Countdown";
 
 const ContestDetails = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ const ContestDetails = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
+  const deadline = "2025-12-15T15:59:00.000Z";
   return (
     <Container>
       <div className="mx-auto flex flex-col lg:flex-row justify-between w-full gap-12">
@@ -45,10 +46,10 @@ const ContestDetails = () => {
 
           <div
             className="
-                text-xl 
-                font-semibold 
-                flex 
-                flex-row 
+                text-xl
+                font-semibold
+                flex
+                flex-row
                 items-center
                 gap-2
               "
@@ -65,16 +66,21 @@ const ContestDetails = () => {
             />
           </div>
           <hr className="my-6" />
-          <div>
-            <p
+          <div className="flex justify-between">
+           <div>
+             <p
               className="
-                gap-4 
+                gap-4
                 font-light
                 text-neutral-500
               "
             >
               Quantity: 10 Units Left Only!
             </p>
+            <Countdown deadline={deadline} />
+           </div>
+           <p className="text-2xl font-bold">Prize Money <span>
+            {} $ 10000</span></p>
           </div>
           <hr className="my-6" />
           <div className="flex justify-between">
