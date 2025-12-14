@@ -1,5 +1,6 @@
 import { FaUserClock, FaUserCog } from "react-icons/fa";
 import MenuItem from "./MenuItem";
+import { MdOutlineManageHistory } from "react-icons/md";
 
 const AdminMenu = () => {
   return (
@@ -9,6 +10,11 @@ const AdminMenu = () => {
         icon={FaUserClock}
         label="Contest Creator Request"
         address="creator-request"
+      />
+       <MenuItem
+        icon={MdOutlineManageHistory}
+        label="Manage Orders"
+        address="manage-orders"
       />
     </>
   );

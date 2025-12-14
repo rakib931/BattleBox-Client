@@ -13,16 +13,20 @@ import MenuItem from "./Menu/MenuItem";
 import AdminMenu from "./Menu/AdminMenu";
 import ContestCreatorMenu from "./Menu/ContestCreatorMenu";
 import ParticipentMenu from "./Menu/ParticipentMenu";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
+  const [role, isRoleLoading] = useRole();
+  // console.log(role);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
-
+  if (isRoleLoading) return <LoadingSpinner />;
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}
@@ -71,12 +75,14 @@ const Sidebar = () => {
                 address="/dashboard"
               />
               {/* Role-Based Menu */}
-              <ParticipentMenu />
+              {/* <ParticipentMenu />
               <ContestCreatorMenu />
-              <AdminMenu />
+              <AdminMenu /> */}
+              {role === "participent" && <ParticipentMenu />}
+              {role === "contest-creator" && <ContestCreatorMenu />}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
-
           {/* Bottom Content */}
           <div>
             <hr />
