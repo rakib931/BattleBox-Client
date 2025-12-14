@@ -2,25 +2,23 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
-const UpdateUserRoleModal = ({ isOpen, closeModal, request, refetch }) => {
-  const [updatedRole, setUpdatedRole] = useState(request?.role);
-  const axiosSecure = useAxiosSecure();
+const UpdateRoleManageUserPageModal = ({ isOpen, closeModal, usar, refetch }) => {
+  const [updatedRole, setUpdatedRole] = useState(usar?.role);
 
+
+  const axiosSecure = useAxiosSecure();
   const updateRole = async () => {
     try {
-      await axiosSecure.patch("/update-role", {
-        email: request?.email,
-        role: updatedRole,
-      });
+      await axiosSecure.patch("/update-role",{email: usar?.email,
+        role: updatedRole} );
       toast.success("User Role Updated");
     } catch (error) {
       console.log(error?.message);
     } finally {
-      refetch();
       closeModal();
+      refetch();
     }
   };
-
   return (
     <>
       <Dialog
@@ -79,4 +77,4 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, request, refetch }) => {
     </>
   );
 };
-export default UpdateUserRoleModal;
+export default UpdateRoleManageUserPageModal;

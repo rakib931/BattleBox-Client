@@ -107,7 +107,7 @@ const SignUp = () => {
                 Profile Image
               </label>
               <input
-                {...register("image")}
+                {...register("image", { required: "Image is required" })}
                 type="file"
                 id="image"
                 accept="image/*"
@@ -124,6 +124,11 @@ const SignUp = () => {
               <p className="mt-1 text-xs text-gray-400">
                 PNG, JPG or JPEG (max 2MB)
               </p>
+              {errors?.image && (
+                <p className="text-red-500 text-xs mt-2">
+                  {errors.image.message}
+                </p>
+              )}
             </div>
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
