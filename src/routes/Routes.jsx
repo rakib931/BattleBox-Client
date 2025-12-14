@@ -25,6 +25,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        // index:true,
         element: <Home />,
       },
       {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
         element: <AllContest />,
       },
       {
-        path: "/plant/:id",
+        path: "/contest/:id",
         element: (
           <PrivateRoute>
             <ContestDetails />

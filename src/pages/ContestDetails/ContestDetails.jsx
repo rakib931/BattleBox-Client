@@ -4,13 +4,25 @@ import Button from "../../components/Shared/Button/Button";
 import PurchaseModal from "../../components/Modal/PurchaseModal";
 import { useState } from "react";
 import Countdown from "./Countdown";
-
+import { useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const ContestDetails = () => {
+  const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
-
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const { data: contest } = useQuery({
+    queryKey: ["contest", id],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/contest/:${id}`);
+      return data;
+    },
+  });
+  console.log(contest);
   const deadline = "2025-12-15T15:59:00.000Z";
   return (
     <Container>
@@ -67,20 +79,21 @@ const ContestDetails = () => {
           </div>
           <hr className="my-6" />
           <div className="flex justify-between">
-           <div>
-             <p
-              className="
+            <div>
+              <p
+                className="
                 gap-4
                 font-light
                 text-neutral-500
               "
-            >
-              Quantity: 10 Units Left Only!
+              >
+                Quantity: 10 Units Left Only!
+              </p>
+              <Countdown deadline={deadline} />
+            </div>
+            <p className="text-2xl font-bold">
+              Prize Money <span>{} $ 10000</span>
             </p>
-            <Countdown deadline={deadline} />
-           </div>
-           <p className="text-2xl font-bold">Prize Money <span>
-            {} $ 10000</span></p>
           </div>
           <hr className="my-6" />
           <div className="flex justify-between">

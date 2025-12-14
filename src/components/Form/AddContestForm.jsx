@@ -65,7 +65,8 @@ const AddContestForm = () => {
         deadline: new Date(startDate).toISOString(),
       };
       console.log(plantData);
-      // return;
+      // saller image and participent count baki 
+      return;
       await mutateAsync(plantData);
       reset();
     } catch (error) {
