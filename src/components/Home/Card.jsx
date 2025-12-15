@@ -3,7 +3,6 @@ import Countdown from "../../pages/ContestDetails/Countdown";
 // const deadline = "2025-12-31T23:59:00.000Z";
 //                   2025-12-18T11:45:00.000Z
 const Card = ({ contest }) => {
-  
   // console.log(deadline)
   return (
     <Link
@@ -28,7 +27,7 @@ const Card = ({ contest }) => {
                 group-hover:scale-110 
                 transition
               "
-            src="https://i.ibb.co.com/rMHmQP2/money-plant-in-feng-shui-brings-luck.jpg"
+            src={contest?.image}
             alt="Plant Image"
           />
           <div
@@ -40,8 +39,12 @@ const Card = ({ contest }) => {
           ></div>
         </div>
         <div className="font-semibold text-lg">{contest?.contestName}</div>
-        <div className="font-semibold text-lg">Category: {contest?.category}</div>
-        <div className="font-semibold text-lg">Participants: {}</div>
+        <div className="font-semibold text-lg">
+          Category: {contest?.category}
+        </div>
+        <div className="font-semibold text-lg">
+          Participants: {contest?.participent}
+        </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold"> Price: {contest?.price}$</div>
         </div>

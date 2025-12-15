@@ -13,7 +13,7 @@ const ContestCreatorReq = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["manage-creator-eq", user?.email],
+    queryKey: ["manage-creator-req", user?.email],
     queryFn: async () => {
       const result = await axiosSecure("/manage-creator-req");
       return result.data;

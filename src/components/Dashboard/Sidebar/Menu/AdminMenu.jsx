@@ -13,8 +13,8 @@ const AdminMenu = () => {
       />
        <MenuItem
         icon={MdOutlineManageHistory}
-        label="Manage Orders"
-        address="manage-orders"
+        label="Manage Pending Contest"
+        address="manage-contest"
       />
     </>
   );

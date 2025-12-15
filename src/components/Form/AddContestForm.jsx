@@ -8,7 +8,9 @@ import { imageUpload } from "../../utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ErrorPage from "../../pages/ErrorPage";
+import useAuth from "../../hooks/useAuth";
 const AddContestForm = () => {
+  const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
   const {
@@ -20,7 +22,6 @@ const AddContestForm = () => {
 
   const {
     isPending,
-    isError,
     mutateAsync,
     reset: mutationReset,
   } = useMutation({
@@ -62,11 +63,12 @@ const AddContestForm = () => {
         prizeMoney: Number(prizeMoney),
         price: Number(price),
         category,
+        status: "pending",
+        participent: 0,
+        saller: user?.email,
         deadline: new Date(startDate).toISOString(),
       };
-      console.log(plantData);
-      // saller image and participent count baki 
-      return;
+
       await mutateAsync(plantData);
       reset();
     } catch (error) {
@@ -74,7 +76,7 @@ const AddContestForm = () => {
     }
   };
   if (isPending) return <LoadingSpinner />;
-  if (isError) return <ErrorPage />;
+  // if (isError) return <ErrorPage />;
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form
@@ -246,7 +248,7 @@ const AddContestForm = () => {
               type="submit"
               className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600"
             >
-             Add Contest
+              Add Contest
             </button>
           </div>
         </div>

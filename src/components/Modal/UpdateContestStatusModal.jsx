@@ -1,16 +1,17 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-const UpdateContestStatusModal  = ({ isOpen, closeModal, contest, refetch }) => {
+import toast from "react-hot-toast";
+const UpdateContestStatusModal = ({ isOpen, closeModal, contest, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const [status, setStatus] = useState(contest?.status);
   const updateStatus = async () => {
     try {
-      const data = await axiosSecure.patch("/update-status", {
+      await axiosSecure.patch("/update-status", {
         id: contest?._id,
         status,
       });
-      console.log(data);
+      toast.success("Status Updated");
     } catch (error) {
       console.log(error);
     } finally {

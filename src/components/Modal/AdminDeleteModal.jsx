@@ -1,9 +1,29 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const DeleteModal = ({ closeModal, isOpen }) => {
+const AdminDeleteModal = ({
+  contest,
+  closeModal,
+  isOpenDelete,
+  setIsOpenDelete,
+  refetch,
+}) => {
+  const axiosSecure = useAxiosSecure();
+  const handelDelete = async (id) => {
+    try {
+      await axiosSecure.delete("/constest-delete-admin", {
+        data: { id },
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      refetch();
+      setIsOpenDelete(false);
+    }
+  };
   return (
     <Dialog
-      open={isOpen}
+      open={isOpenDelete}
       as="div"
       className="relative z-10 focus:outline-none "
       onClose={closeModal}
@@ -28,6 +48,7 @@ const DeleteModal = ({ closeModal, isOpen }) => {
             <hr className="mt-8 " />
             <div className="flex mt-2 justify-around">
               <button
+                onClick={() => handelDelete(contest?._id)}
                 type="button"
                 className="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               >
@@ -36,7 +57,7 @@ const DeleteModal = ({ closeModal, isOpen }) => {
               <button
                 type="button"
                 className="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                onClick={closeModal}
+                onClick={() => setIsOpenDelete(false)}
               >
                 No
               </button>
@@ -48,4 +69,4 @@ const DeleteModal = ({ closeModal, isOpen }) => {
   );
 };
 
-export default DeleteModal;
+export default AdminDeleteModal;

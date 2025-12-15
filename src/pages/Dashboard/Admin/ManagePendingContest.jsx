@@ -1,6 +1,22 @@
-import ContestParticipentDataRow from "../../../components/Dashboard/TableRows/ContestParticipentDataRow";
+import { useQuery } from "@tanstack/react-query";
+import PendingContestDataRow from "../../../components/Dashboard/TableRows/PendingContestDataRow";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
-const ManageOrders = () => {
+const ManagePendingContest = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const { data: contests = [], isLoading,refetch } = useQuery({
+    queryKey: ["contests", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(
+        `${import.meta.env.VITE_API_URL}/pending-contests`
+      );
+      return data;
+    },
+  });
+  if (isLoading) return <LoadingSpinner />;
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -16,12 +32,7 @@ const ManageOrders = () => {
                     >
                       Name
                     </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Customer
-                    </th>
+                    
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -32,14 +43,9 @@ const ManageOrders = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Quantity
+                      Prize Money
                     </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Address
-                    </th>
+                    
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -56,7 +62,13 @@ const ManageOrders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <ContestParticipentDataRow />
+                  {contests.map((contest) => (
+                    <PendingContestDataRow
+                    refetch={refetch}
+                      contest={contest}
+                      key={contest?._id}
+                    />
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -67,4 +79,4 @@ const ManageOrders = () => {
   );
 };
 
-export default ManageOrders;
+export default ManagePendingContest;

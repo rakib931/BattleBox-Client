@@ -9,7 +9,9 @@ const AllContest = () => {
   const { data: contests = [], isLoading } = useQuery({
     queryKey: ["contests", user?.email],
     queryFn: async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/contests`);
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/approved-contest`
+      );
       return data;
     },
   });

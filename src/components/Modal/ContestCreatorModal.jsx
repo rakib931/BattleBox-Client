@@ -1,10 +1,11 @@
 import { Dialog, DialogTitle, DialogPanel } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const ContestCreatorModal = ({ closeModal, isOpen }) => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -24,8 +25,8 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
       role: "participent",
     };
     try {
-      const result = await axios.post(
-        `${import.meta.env.VITE_API_URL}/contest-creator-req`,
+      const result = await axiosSecure.post(
+        `/contest-creator-req`,
         providerData
       );
       console.log(result.data);

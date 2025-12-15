@@ -10,12 +10,13 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MainLayout from "../layouts/MainLayout";
 import MyInventory from "../pages/Dashboard/ContestCreator/MyInventory";
-import ManageOrders from "../pages/Dashboard/ContestCreator/ManageOrders";
+
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import ContestDetails from "../pages/ContestDetails/ContestDetails";
 import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
 import AllContest from "../pages/AllContests/AllContests";
+import ManagePendingContest from "../pages/Dashboard/Admin/ManagePendingContest";
 
 export const router = createBrowserRouter([
   {
@@ -109,8 +110,8 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "manage-orders",
-        element: <ManageOrders />,
+        path: "manage-contest",
+        element: <ManagePendingContest />,
       },
     ],
   },

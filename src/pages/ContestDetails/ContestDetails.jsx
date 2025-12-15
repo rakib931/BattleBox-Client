@@ -7,6 +7,9 @@ import Countdown from "./Countdown";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+
+import Winner from "./Winner";
 const ContestDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -14,16 +17,22 @@ const ContestDetails = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-  const { data: contest } = useQuery({
+  const contestWinner = {
+    name: "Alice Johnson",
+    photo: "/images/alice.jpg",
+    contestName: "Photography Contest",
+    prize: "$500",
+  };
+  const { data: contest = {}, isPending } = useQuery({
     queryKey: ["contest", id],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/contest/:${id}`);
+      const { data } = await axiosSecure(`/contests/${id}`);
       return data;
     },
   });
   console.log(contest);
-  const deadline = "2025-12-15T15:59:00.000Z";
+  // const deadline = "2025-12-15T15:59:00.000Z";
+  if (isPending) return <LoadingSpinner />;
   return (
     <Container>
       <div className="mx-auto flex flex-col lg:flex-row justify-between w-full gap-12">
@@ -33,71 +42,51 @@ const ContestDetails = () => {
             <div className="w-full overflow-hidden rounded-xl">
               <img
                 className="object-cover w-full"
-                src="https://i.ibb.co/DDnw6j9/1738597899-golden-money-plant.jpg"
+                src={contest?.image}
                 alt="header image"
               />
             </div>
           </div>
+          {/* Winner section  */}
+          <Winner winner={contest?.winner} />
         </div>
         <div className="md:gap-10 flex-1">
           {/* Plant Info */}
           <Heading
-            title={"Money Plant"}
-            subtitle={`Category: ${"Succulent"}`}
+            title={contest?.contestName}
+            subtitle={`Category: ${contest?.category}`}
           />
           <hr className="my-6" />
           <div
             className="
           text-lg font-light text-neutral-500"
           >
-            Professionally deliver sticky testing procedures for next-generation
-            portals. Objectively communicate just in time infrastructures
-            before.
+            <span className="font-semibold">Description: </span>
+            {contest?.description}
           </div>
           <hr className="my-6" />
-
           <div
             className="
-                text-xl
-                font-semibold
-                flex
-                flex-row
-                items-center
-                gap-2
-              "
+          text-lg font-light text-neutral-500"
           >
-            <div>Seller: Shakil Ahmed Atik</div>
-
-            <img
-              className="rounded-full"
-              height="30"
-              width="30"
-              alt="Avatar"
-              referrerPolicy="no-referrer"
-              src="https://lh3.googleusercontent.com/a/ACg8ocKUMU3XIX-JSUB80Gj_bYIWfYudpibgdwZE1xqmAGxHASgdvCZZ=s96-c"
-            />
+            <span className="font-semibold">Instraction: </span>
+            {contest?.instruction}
           </div>
           <hr className="my-6" />
+
           <div className="flex justify-between">
             <div>
-              <p
-                className="
-                gap-4
-                font-light
-                text-neutral-500
-              "
-              >
-                Quantity: 10 Units Left Only!
-              </p>
-              <Countdown deadline={deadline} />
+              <Countdown deadline={contest?.deadline} />
             </div>
             <p className="text-2xl font-bold">
-              Prize Money <span>{} $ 10000</span>
+              Prize Money <span>{contest?.prizeMoney}$</span>
             </p>
           </div>
           <hr className="my-6" />
           <div className="flex justify-between">
-            <p className="font-bold text-3xl text-gray-500">Price: 10$</p>
+            <p className="font-bold text-3xl text-gray-500">
+              Price: {contest?.price}$
+            </p>
             <div>
               <Button onClick={() => setIsOpen(true)} label="Purchase" />
             </div>
