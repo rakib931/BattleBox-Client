@@ -1,8 +1,35 @@
-import React from 'react';
+import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
-const UpdateContestForm = () => {
+const UpdateContestForm = ({ contest }) => {
+  const axiosSecure = useAxiosSecure();
+  const [deadline, setDeadline] = useState(
+    contest?.deadline ? new Date(contest.deadline) : null
+  );
+  const handelUpdate = (id) => {
+    console.log(id);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      contestName: contest?.contestName,
+      category: contest?.category,
+      description: contest?.description,
+      instruction: contest?.instruction,
+      price: contest?.price,
+      prizeMoney: contest?.prizeMoney,
+    },
+  });
+
   return (
-      <div className="w-full flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+    <div className="w-full flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form>
         <div className="grid grid-cols-1 gap-10">
           <div className="space-y-6">
@@ -12,6 +39,7 @@ const UpdateContestForm = () => {
                 Name
               </label>
               <input
+                defaultValue={contest?.contestName}
                 className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                 name="name"
                 id="name"
@@ -27,19 +55,34 @@ const UpdateContestForm = () => {
               </label>
               <select
                 required
+                defaultValue={contest?.category}
                 className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                 name="category"
               >
-                <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Succulent">Succulent</option>
-                <option value="Flowering">Flowering</option>
+                <option value="">Select category</option>
+                <option value="Photography">Photography</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Music">Music</option>
               </select>
             </div>
             {/* Description */}
             <div className="space-y-1 text-sm">
               <label htmlFor="description" className="block text-gray-600">
                 Description
+              </label>
+
+              <textarea
+                id="description"
+                placeholder="Write plant description here..."
+                className="block rounded-md focus:lime-300 w-full h-32 px-4 py-3 text-gray-800  border border-lime-300 bg-white focus:outline-lime-500 "
+                name="description"
+              ></textarea>
+            </div>
+            {/* Instruction */}
+            <div className="space-y-1 text-sm">
+              <label htmlFor="instruction" className="block text-gray-600">
+                Instruction
               </label>
 
               <textarea
@@ -82,6 +125,19 @@ const UpdateContestForm = () => {
                   required
                 />
               </div>
+            </div>
+            <div className="flex-1 space-y-1 text-sm">
+              <label className="block text-gray-600">Contest Deadline</label>
+              <DatePicker
+                selected={deadline}
+                onChange={(date) => setDeadline(date)}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="yyyy-MM-dd HH:mm"
+                placeholderText="Select date & time"
+                className="w-full px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
+              />
             </div>
             {/* Image */}
             <div className=" p-4  w-full  m-auto rounded-lg grow">

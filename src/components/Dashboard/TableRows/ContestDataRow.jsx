@@ -2,9 +2,10 @@ import { useState } from "react";
 import DeleteModal from "../../Modal/DeleteModal";
 import UpdateContestModal from "../../Modal/UpdateContestModal";
 
-const ContestDataRow = () => {
+const ContestDataRow = ({ contest,refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const status = contest?.status;
 
   function openModal() {
     setIsOpen(true);
@@ -21,7 +22,7 @@ const ContestDataRow = () => {
             <div className="block relative">
               <img
                 alt="profile"
-                src="https://i.ibb.co.com/rMHmQP2/money-plant-in-feng-shui-brings-luck.jpg"
+                src={contest?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
@@ -29,16 +30,19 @@ const ContestDataRow = () => {
         </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">Money Plant</p>
+        <p className="text-gray-900 ">{contest?.contestName}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">Indoor</p>
+        <p className="text-gray-900 ">{contest?.category}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">$120</p>
+        <p className="text-gray-900 ">$ {contest?.price}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">5</p>
+        <p className="text-gray-900 ">$ {contest?.prizeMoney}</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 ">{contest?.participent}</p>
       </td>
 
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -52,20 +56,36 @@ const ContestDataRow = () => {
           ></span>
           <span className="relative">Delete</span>
         </span>
-        <DeleteModal isOpen={isOpen} closeModal={closeModal} />
+        <DeleteModal refetch={refetch} contest={contest} isOpen={isOpen} closeModal={closeModal} />
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <span
-          onClick={() => setIsEditModalOpen(true)}
-          className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+          onClick={
+            status === "approved" ? undefined : () => setIsEditModalOpen(true)
+          }
+          className={`relative inline-block px-3 py-1 font-semibold leading-tight
+    ${
+      status === "approved"
+        ? "cursor-not-allowed text-gray-400"
+        : "cursor-pointer text-green-900"
+    }
+  `}
         >
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+            className={`absolute inset-0 rounded-full
+      ${
+        status === "approved"
+          ? "bg-gray-300 opacity-40"
+          : "bg-green-200 opacity-50"
+      }
+    `}
           ></span>
+
           <span className="relative">Update</span>
         </span>
         <UpdateContestModal
+        contest={contest}
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
         />
