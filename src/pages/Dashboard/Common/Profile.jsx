@@ -2,12 +2,15 @@ import useAuth from "../../../hooks/useAuth";
 import coverImg from "../../../assets/images/cover.jpg";
 import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import UpdateProfileModal from "../../../components/Modal/UpdateProfileModal";
+import { useState } from "react";
 
 const Profile = () => {
+  const closeModal = () => setIsOpen(false);
+  let [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const [role, isRoleLoading] = useRole();
-  // will use update profile
-  // await updateUserProfile(name, imageURL);
+ 
   if (isRoleLoading) return <LoadingSpinner />;
   return (
     <div className="flex justify-center items-center h-screen">
@@ -46,9 +49,18 @@ const Profile = () => {
               </p>
 
               <div>
-                <button className="bg-lime-500  px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 block mb-1">
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="bg-lime-500  px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 block mb-1"
+                >
                   Update Profile
                 </button>
+                <UpdateProfileModal
+                  user={user}
+                  closeModal={closeModal}
+                  isOpen={isOpen}
+                />
+
                 <button className="bg-lime-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800">
                   Change Password
                 </button>

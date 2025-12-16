@@ -37,7 +37,7 @@ const UpdateContestStatusModal = ({ isOpen, closeModal, contest, refetch }) => {
                 as="h3"
                 className="text-base/7 font-medium text-black"
               >
-                Update User Role
+                Update Contest Status
               </DialogTitle>
               <form>
                 <div>
