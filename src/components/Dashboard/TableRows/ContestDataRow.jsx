@@ -83,7 +83,7 @@ const ContestDataRow = ({ contest, refetch }) => {
           }
           className={`relative inline-block px-3 py-1 font-semibold leading-tight
     ${
-      status === "approved"
+      status === "approved" || status === "rejected"
         ? "cursor-not-allowed text-gray-400"
         : "cursor-pointer text-green-900"
     }
@@ -93,7 +93,7 @@ const ContestDataRow = ({ contest, refetch }) => {
             aria-hidden="true"
             className={`absolute inset-0 rounded-full
       ${
-        status === "approved"
+        status === "approved" || status === "rejected"
           ? "bg-gray-300 opacity-40"
           : "bg-green-200 opacity-50"
       }
@@ -102,8 +102,9 @@ const ContestDataRow = ({ contest, refetch }) => {
 
           <span className="relative">Update</span>
         </span>
+
         <UpdateContestModal
-        refetch={refetch}
+          refetch={refetch}
           contest={contest}
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}

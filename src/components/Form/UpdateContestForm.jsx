@@ -54,6 +54,7 @@ const UpdateContestForm = ({ contest, refetch, setIsEditModalOpen }) => {
       saller: contest?.saller,
       deadline: deadline.toISOString(),
     };
+    console.log(contestData);
     try {
       const data = await axiosSecure.patch(
         `/contest-update/${contest._id}`,
@@ -83,10 +84,10 @@ const UpdateContestForm = ({ contest, refetch, setIsEditModalOpen }) => {
                   required: "Contest name is required",
                 })}
                 className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
-                name="name"
-                id="name"
+                name="contestName"
+                
                 type="text"
-                placeholder="Plant Name"
+                placeholder="Contest Name"
                 required
               />
               {errors.contestName && (
@@ -153,7 +154,7 @@ const UpdateContestForm = ({ contest, refetch, setIsEditModalOpen }) => {
                 id="instruction"
                 placeholder="Write plant description here..."
                 className="block rounded-md focus:lime-300 w-full h-32 px-4 py-3 text-gray-800  border border-lime-300 bg-white focus:outline-lime-500 "
-                name="description"
+                name="instruction"
               ></textarea>
               {errors.instruction && (
                 <p className="text-red-500 text-xs">
