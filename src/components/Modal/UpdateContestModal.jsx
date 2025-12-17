@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import UpdateContestForm from "../Form/UpdateContestForm";
 
 
-const UpdateContestModal = ({ setIsEditModalOpen, isOpen, contest }) => {
+const UpdateContestModal = ({ setIsEditModalOpen, isOpen, contest,refetch }) => {
 
   return (
     <Dialog
@@ -32,7 +32,7 @@ const UpdateContestModal = ({ setIsEditModalOpen, isOpen, contest }) => {
               Update Contest Info
             </DialogTitle>
             <div className="mt-2 w-full">
-              <UpdateContestForm contest={contest} />
+              <UpdateContestForm setIsEditModalOpen={setIsEditModalOpen} refetch={refetch} contest={contest} />
             </div>
           </DialogPanel>
         </div>

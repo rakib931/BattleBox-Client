@@ -55,7 +55,7 @@ const AddContestForm = () => {
     const imageURL = await imageUpload(Imgfile);
 
     try {
-      const plantData = {
+      const contestData = {
         image: imageURL,
         contestName,
         description,
@@ -69,7 +69,7 @@ const AddContestForm = () => {
         deadline: new Date(startDate).toISOString(),
       };
 
-      await mutateAsync(plantData);
+      await mutateAsync(contestData);
       reset();
     } catch (error) {
       console.log(error);

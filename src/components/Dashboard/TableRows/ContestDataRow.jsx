@@ -103,6 +103,7 @@ const ContestDataRow = ({ contest, refetch }) => {
           <span className="relative">Update</span>
         </span>
         <UpdateContestModal
+        refetch={refetch}
           contest={contest}
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
