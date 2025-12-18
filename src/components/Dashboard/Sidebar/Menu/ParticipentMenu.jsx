@@ -1,5 +1,6 @@
 import { BsFingerprint } from "react-icons/bs";
 import { GrUserAdmin } from "react-icons/gr";
+import { GoFileSubmodule } from "react-icons/go";
 import MenuItem from "./MenuItem";
 import { useState } from "react";
 import ContestCreatorModal from "../../../Modal/ContestCreatorModal";
@@ -12,7 +13,16 @@ const ParticipentMenu = () => {
 
   return (
     <>
-      <MenuItem icon={BsFingerprint} label="My Orders" address="my-orders" />
+      <MenuItem
+        icon={BsFingerprint}
+        label="Contest Participated"
+        address="participated"
+      />
+      <MenuItem
+        icon={GoFileSubmodule}
+        label="My Submition"
+        address="my-submition"
+      />
 
       <div
         onClick={() => setIsOpen(true)}

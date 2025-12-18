@@ -8,9 +8,8 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
-
 import Winner from "./Winner";
-import { useEffect } from "react";
+
 const ContestDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -88,7 +87,9 @@ const ContestDetails = () => {
                 <Button onClick={() => setIsOpen(true)} label="Purchase" />
               </div>
             ) : (
-             <p className="text-red-500 text-xl font-semibold">Contest ended</p>
+              <p className="text-red-500 text-xl font-semibold">
+                Contest ended
+              </p>
             )}
           </div>
           <hr className="my-6" />

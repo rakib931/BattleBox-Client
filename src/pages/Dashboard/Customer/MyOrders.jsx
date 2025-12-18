@@ -1,5 +1,16 @@
 import ParticipetedDataRow from "../../../components/Dashboard/TableRows/ParticipetedDataRow";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const MyOrders = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: contests = [] } = useQuery({
+    queryKey: ["my-participent"],
+    queryFn: async () => {
+      const { data } = await axiosSecure("/participated");
+      return data;
+    },
+  });
+  console.log(contests);
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -31,21 +42,21 @@ const MyOrders = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
+                      instruction
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    >
                       Price
                     </th>
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Quantity
+                      Pize Money
                     </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Status
-                    </th>
-
+                    
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -55,7 +66,9 @@ const MyOrders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <ParticipetedDataRow />
+                  {contests.map((contest) => (
+                    <ParticipetedDataRow key={contest?._id} contest={contest} />
+                  ))}
                 </tbody>
               </table>
             </div>

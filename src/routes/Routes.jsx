@@ -18,6 +18,7 @@ import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
 import AllContest from "../pages/AllContests/AllContests";
 import ManagePendingContest from "../pages/Dashboard/Admin/ManagePendingContest";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import MySubmitions from "../pages/Dashboard/Customer/MySubmitions";
 
 export const router = createBrowserRouter([
   {
@@ -111,10 +112,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "my-orders",
+        path: "participated",
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-submition",
+        element: (
+          <PrivateRoute>
+            <MySubmitions />
           </PrivateRoute>
         ),
       },

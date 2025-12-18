@@ -16,6 +16,7 @@ const AllContest = () => {
     },
   });
   if (isLoading) return <LoadingSpinner />;
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10">
       {/* Page Header */}
