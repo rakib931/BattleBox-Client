@@ -1,6 +1,11 @@
 import React from "react";
+import { useState } from "react";
 
-const ContestBayerDataRow = () => {
+const ContestBayerDataRow = ({ task }) => {
+  const [isOpen, SetIsOpen] = useState(false);
+  function closeWinner() {
+    SetIsOpen(false);
+  }
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -9,7 +14,7 @@ const ContestBayerDataRow = () => {
             <div className="block relative">
               <img
                 alt="profile"
-                src="https:imag"
+                src={task?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
@@ -18,16 +23,13 @@ const ContestBayerDataRow = () => {
       </td>
 
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">dfgdfsg</p>
+        <p className="text-gray-900">{task?.contestName}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">sfdgsdf</p>
+        <p className="text-gray-900">{task?.category}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">fgsdfg</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">$gdfg</p>
+        <p className="text-gray-900">{task?.customerEmail}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900">$afds</p>

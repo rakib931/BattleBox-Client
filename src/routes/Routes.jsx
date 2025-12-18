@@ -9,8 +9,6 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MainLayout from "../layouts/MainLayout";
-import MyInventory from "../pages/Dashboard/ContestCreator/MyInventory";
-
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import ContestDetails from "../pages/ContestDetails/ContestDetails";
@@ -19,6 +17,8 @@ import AllContest from "../pages/AllContests/AllContests";
 import ManagePendingContest from "../pages/Dashboard/Admin/ManagePendingContest";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import MySubmitions from "../pages/Dashboard/Customer/MySubmitions";
+import MyCreatedContests from "../pages/Dashboard/ContestCreator/MyCreatedContests";
+import SubmittedTasks from "../pages/Dashboard/ContestCreator/SubmittedTasks";
 
 export const router = createBrowserRouter([
   {
@@ -80,10 +80,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "my-inventory",
+        path: "submited-task",
         element: (
           <PrivateRoute>
-            <MyInventory />
+            <SubmittedTasks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "created-contests",
+        element: (
+          <PrivateRoute>
+            <MyCreatedContests />
           </PrivateRoute>
         ),
       },

@@ -3,10 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
-const MyInventory = () => {
+const MyCreatedContests = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: contests = [], isloading,refetch } = useQuery({
+  const {
+    data: contests = [],
+    isloading,
+    refetch,
+  } = useQuery({
     queryKey: ["contest", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure("/contest-inventory");
@@ -59,12 +63,6 @@ const MyInventory = () => {
                     >
                       participent
                     </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Winner
-                    </th>
 
                     <th
                       scope="col"
@@ -82,7 +80,11 @@ const MyInventory = () => {
                 </thead>
                 <tbody>
                   {contests.map((contest) => (
-                    <ContestDataRow refetch={refetch} key={contest?._id} contest={contest} />
+                    <ContestDataRow
+                      refetch={refetch}
+                      key={contest?._id}
+                      contest={contest}
+                    />
                   ))}
                 </tbody>
               </table>
@@ -94,4 +96,4 @@ const MyInventory = () => {
   );
 };
 
-export default MyInventory;
+export default MyCreatedContests;
