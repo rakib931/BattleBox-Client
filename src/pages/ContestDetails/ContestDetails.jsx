@@ -10,14 +10,16 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 import Winner from "./Winner";
+import { useEffect } from "react";
 const ContestDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
+
   const closeModal = () => {
     setIsOpen(false);
   };
- 
+
   const { data: contest = {}, isPending } = useQuery({
     queryKey: ["contest", id],
     queryFn: async () => {
@@ -25,8 +27,7 @@ const ContestDetails = () => {
       return data;
     },
   });
-  // console.log(contest);
-  // const deadline = "2025-12-15T15:59:00.000Z";
+
   if (isPending) return <LoadingSpinner />;
   return (
     <Container>
@@ -82,13 +83,21 @@ const ContestDetails = () => {
             <p className="font-bold text-3xl text-gray-500">
               Price: {contest?.price}$
             </p>
-            <div>
-              <Button onClick={() => setIsOpen(true)} label="Purchase" />
-            </div>
+            {new Date(Date.now()) < new Date(contest?.deadline) ? (
+              <div>
+                <Button onClick={() => setIsOpen(true)} label="Purchase" />
+              </div>
+            ) : (
+             <p className="text-red-500 text-xl font-semibold">Contest ended</p>
+            )}
           </div>
           <hr className="my-6" />
 
-          <PurchaseModal contest={contest} closeModal={closeModal} isOpen={isOpen} />
+          <PurchaseModal
+            contest={contest}
+            closeModal={closeModal}
+            isOpen={isOpen}
+          />
         </div>
       </div>
     </Container>

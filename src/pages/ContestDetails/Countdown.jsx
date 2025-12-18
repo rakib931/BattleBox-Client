@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Countdown = ({ deadline }) => {
+ const Countdown = ({ deadline }) => {
   const [timeLeft, setTimeLeft] = useState("");
   const [ended, setEnded] = useState(false);
 
