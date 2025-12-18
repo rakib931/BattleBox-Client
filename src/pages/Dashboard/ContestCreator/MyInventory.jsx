@@ -6,11 +6,7 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 const MyInventory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const {
-    data: contests = [],
-    isloading,
-    refetch,
-  } = useQuery({
+  const { data: contests = [], isloading,refetch } = useQuery({
     queryKey: ["contest", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure("/contest-inventory");
@@ -86,11 +82,7 @@ const MyInventory = () => {
                 </thead>
                 <tbody>
                   {contests.map((contest) => (
-                    <ContestDataRow
-                      refetch={refetch}
-                      key={contest?._id}
-                      contest={contest}
-                    />
+                    <ContestDataRow refetch={refetch} key={contest?._id} contest={contest} />
                   ))}
                 </tbody>
               </table>

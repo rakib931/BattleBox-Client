@@ -1,10 +1,12 @@
 import { useState } from "react";
 import DeleteModal from "../../Modal/DeleteModal";
 import UpdateContestModal from "../../Modal/UpdateContestModal";
+import WinnerModal from "../../Modal/WinnerModal";
 
 const ContestDataRow = ({ contest, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isWinner, SetIsWinner] = useState(false);
   const status = contest?.status;
 
   function openModal() {
@@ -13,7 +15,9 @@ const ContestDataRow = ({ contest, refetch }) => {
   function closeModal() {
     setIsOpen(false);
   }
-
+  function closeWinner() {
+    SetIsWinner(false);
+  }
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -46,7 +50,12 @@ const ContestDataRow = ({ contest, refetch }) => {
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         {contest?.status === "approved" ? (
-          <button className="btn px-3 py-1  font-semibold ">Set Winner</button>
+          <button
+            onClick={() => SetIsWinner(true)}
+            className="btn px-3 py-1  font-semibold "
+          >
+            Set Winner
+          </button>
         ) : (
           <p
             className={`${
@@ -56,6 +65,11 @@ const ContestDataRow = ({ contest, refetch }) => {
             {contest?.status}
           </p>
         )}
+        <WinnerModal
+          closeWinner={closeWinner}
+          isWinner={isWinner}
+          contest={contest}
+        />
       </td>
 
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">

@@ -17,12 +17,7 @@ const ContestDetails = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  const contestWinner = {
-    name: "Alice Johnson",
-    photo: "/images/alice.jpg",
-    contestName: "Photography Contest",
-    prize: "$500",
-  };
+ 
   const { data: contest = {}, isPending } = useQuery({
     queryKey: ["contest", id],
     queryFn: async () => {
@@ -30,7 +25,7 @@ const ContestDetails = () => {
       return data;
     },
   });
-  console.log(contest);
+  // console.log(contest);
   // const deadline = "2025-12-15T15:59:00.000Z";
   if (isPending) return <LoadingSpinner />;
   return (
@@ -93,7 +88,7 @@ const ContestDetails = () => {
           </div>
           <hr className="my-6" />
 
-          <PurchaseModal closeModal={closeModal} isOpen={isOpen} />
+          <PurchaseModal contest={contest} closeModal={closeModal} isOpen={isOpen} />
         </div>
       </div>
     </Container>

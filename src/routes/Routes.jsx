@@ -17,6 +17,7 @@ import ContestDetails from "../pages/ContestDetails/ContestDetails";
 import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
 import AllContest from "../pages/AllContests/AllContests";
 import ManagePendingContest from "../pages/Dashboard/Admin/ManagePendingContest";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ContestDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment-success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess />
           </PrivateRoute>
         ),
       },
