@@ -32,6 +32,8 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
       prize: task?.prizeMoney,
       creator: task?.creator, // optional
     };
+    // console.log(winnerData);
+    // ret
     try {
       const { data } = await axiosSecure.post("/add-winner", winnerData);
       if (data === "Already Decleared Winner") {

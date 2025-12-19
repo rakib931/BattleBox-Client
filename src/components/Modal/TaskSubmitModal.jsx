@@ -23,6 +23,7 @@ const TaskSubmitModal = ({ closeModal, isOpen, contest }) => {
       customerImage: user?.photoURL,
       contestName: contest?.contestName,
       price: contest?.price,
+      deadline: contest?.deadline,
       contestId: contest?.contestId,
       prizeMoney: contest?.prizeMoney,
       image: contest?.image,
