@@ -61,20 +61,18 @@ const PurchaseModal = ({ closeModal, isOpen, contest }) => {
               Review Info Before Purchase
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Plant: Money Plant</p>
+              <p className="text-sm text-gray-500">Contest: {contestName}</p>
             </div>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Category: Indoor</p>
+              <p className="text-sm text-gray-500">Category: {category}</p>
             </div>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Customer: PH</p>
-            </div>
-
-            <div className="mt-2">
-              <p className="text-sm text-gray-500">Price: $ 120</p>
+              <p className="text-sm text-gray-500">
+                Customer:{user?.displayName}
+              </p>
             </div>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Available Quantity: 5</p>
+              <p className="text-sm text-gray-500">Price: $ {price}</p>
             </div>
             <div className="flex mt-2 justify-around">
               <button

@@ -4,6 +4,8 @@ import { GoFileSubmodule } from "react-icons/go";
 import MenuItem from "./MenuItem";
 import { useState } from "react";
 import ContestCreatorModal from "../../../Modal/ContestCreatorModal";
+import { GiPodiumWinner } from "react-icons/gi";
+import { MdLeaderboard } from "react-icons/md";
 const ParticipentMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,9 +27,14 @@ const ParticipentMenu = () => {
         address="my-submition"
       />
       <MenuItem
-        icon={GoFileSubmodule}
+        icon={GiPodiumWinner}
         label="My Winning Contests"
         address="my-wining-contests"
+      />
+      <MenuItem
+        icon={MdLeaderboard}
+        label="LeaderBoard"
+        address="leaderboard"
       />
       <div
         onClick={() => setIsOpen(true)}

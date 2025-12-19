@@ -7,7 +7,6 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AddPlant from "../pages/Dashboard/ContestCreator/AddContest";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
-import Statistics from "../pages/Dashboard/Common/Statistics";
 import MainLayout from "../layouts/MainLayout";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
@@ -20,6 +19,7 @@ import MySubmitions from "../pages/Dashboard/Customer/MySubmitions";
 import MyCreatedContests from "../pages/Dashboard/ContestCreator/MyCreatedContests";
 import SubmittedTasks from "../pages/Dashboard/ContestCreator/SubmittedTasks";
 import MyWinningContests from "../pages/Dashboard/Customer/MyWinningContests";
+import Leaderboard from "../pages/Dashboard/Customer/Leaderboard";
 
 export const router = createBrowserRouter([
   {
@@ -65,18 +65,18 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true,
-        element: (
-          <PrivateRoute>
-            <Statistics />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "add-contest",
         element: (
           <PrivateRoute>
             <AddPlant />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "leaderboard",
+        element: (
+          <PrivateRoute>
+            <Leaderboard />
           </PrivateRoute>
         ),
       },

@@ -1,27 +1,16 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const WinnersSection = () => {
-  const winners = [
-    {
-      id: 1,
-      name: "Rakib Hossain",
-      position: "1st Place",
-      image: "https://via.placeholder.com/150",
+  const { data: winners = [], isloading } = useQuery({
+    queryKey: ["Winners for home"],
+    queryFn: async () => {
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/winners`);
+      return data;
     },
-    {
-      id: 2,
-      name: "Jhon Doe",
-      position: "2nd Place",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 3,
-      name: "Sarah Khan",
-      position: "3rd Place",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
-
+  });
+  if (isloading) return <LoadingSpinner />;
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto text-center px-4">
@@ -33,17 +22,19 @@ const WinnersSection = () => {
         <div className="grid md:grid-cols-3 gap-8 mt-12">
           {winners.map((winner) => (
             <div
-              key={winner.id}
+              key={winner?._id}
               className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition"
             >
               <img
-                src={winner.image}
-                alt={winner.name}
+                src={winner?.winnerImage}
+                alt={winner?.winnerName}
                 className="w-32 h-32 mx-auto rounded-full object-cover"
               />
-              <h3 className="text-xl font-semibold mt-4">{winner.name}</h3>
+              <h3 className="text-xl font-semibold mt-4">
+                {winner?.winnerName}
+              </h3>
               <p className="text-lg text-yellow-600 font-bold">
-                {winner.position}
+                Prize Money : ${winner?.prize}
               </p>
             </div>
           ))}
