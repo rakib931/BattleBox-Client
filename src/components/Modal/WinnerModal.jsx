@@ -1,25 +1,50 @@
 import React from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const WinnerModal = ({ isWinner, contest, closeWinner }) => {
+const WinnerModal = ({ isOpen, task, closeModal }) => {
+  const axiosSecure = useAxiosSecure();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      customerName: task?.customerName,
+      customerEmail: task?.customerEmail,
+      submitedTask: task?.submitedTask,
+    },
+  });
 
-  const onSubmit = (data) => {
-    const { name, image } = data;
-    console.log(name, image[0]);
+  const onSubmit = async (data) => {
+    const { customerName, customerEmail, submitedTask, marks } = data;
+    const winnerData = {
+      winnerName: customerName,
+      winnerEmail: customerEmail,
+      winnerImage: task?.customerImage,
+      winnerMarks: Number(marks),
+      submitedTask,
+      creator: task?.creator, // optional
+    };
+    try {
+      await axiosSecure.post("/add-winner", winnerData);
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      closeModal();
+      reset();
+    }
   };
 
   return (
     <Dialog
-      open={isWinner}
+      open={isOpen}
       as="div"
       className="relative z-10 focus:outline-none "
-      onClose={closeWinner}
+      onClose={closeModal}
     >
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
@@ -32,12 +57,12 @@ const WinnerModal = ({ isWinner, contest, closeWinner }) => {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
               >
-                Are you sure?
+                Set Winner
               </DialogTitle>
               <button
                 type="button"
                 className="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                onClick={closeWinner}
+                onClick={closeModal}
               >
                 X
               </button>
@@ -47,44 +72,57 @@ const WinnerModal = ({ isWinner, contest, closeWinner }) => {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-md  p-6 rounded-xl  space-y-5"
             >
-              <h2 className="text-2xl font-semibold text-center text-gray-700">
-                Add Winner
-              </h2>
-
               {/* Name Input */}
               <div className="space-y-1">
                 <label className="text-sm font-medium text-gray-600">
                   Name
                 </label>
                 <input
+                  readOnly
                   type="text"
                   placeholder="Enter name"
-                  {...register("name", { required: "Name is required" })}
+                  {...register("customerName")}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
-                {errors.name && (
-                  <p className="text-red-500 text-xs">{errors.name.message}</p>
-                )}
               </div>
 
-              {/* Image Input */}
+              {/* email Input */}
               <div className="space-y-1">
                 <label className="text-sm font-medium text-gray-600">
-                  Image
+                  Email
                 </label>
                 <input
-                  type="file"
-                  accept="image/*"
-                  {...register("image", { required: "Image is required" })}
-                  className="w-full file:mr-4 file:py-2 file:px-4
-                       file:rounded-lg file:border-0
-                       file:text-sm file:font-semibold
-                       file:bg-blue-50 file:text-blue-700
-                       hover:file:bg-blue-100"
+                  readOnly
+                  type="email"
+                  {...register("customerEmail")}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
-                {errors.image && (
-                  <p className="text-red-500 text-xs">{errors.image.message}</p>
+              </div>
+              {/* Marks Input */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-600">
+                  Marks out of 100
+                </label>
+                <input
+                  type="number"
+                  {...register("marks", { required: "Marks is require" })}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+                {errors.marks && (
+                  <p className="text-red-500 text-xs">{errors.marks.message}</p>
                 )}
+              </div>
+              {/* submition  */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-600">
+                  What Participent Submited
+                </label>
+                <input
+                  type="text"
+                  readOnly
+                  {...register("submitedTask")}
+                  className="w-full h-15 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
               </div>
 
               {/* Submit Button */}

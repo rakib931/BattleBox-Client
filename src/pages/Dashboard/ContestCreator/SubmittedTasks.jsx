@@ -19,7 +19,6 @@ const SubmittedTasks = () => {
       return data;
     },
   });
-  console.log(tasks);
   if (isloading) return <LoadingSpinner />;
   return (
     <>

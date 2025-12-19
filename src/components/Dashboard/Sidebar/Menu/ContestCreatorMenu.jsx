@@ -18,8 +18,8 @@ const ContestCreatorMenu = () => {
       />
       <MenuItem
         icon={SiGoogletasks}
-        label="Submited Task"
-        address="submited-task"
+        label="Submited Tasks"
+        address="submited-tasks"
       />
     </>
   );

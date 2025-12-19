@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "submited-task",
+        path: "submited-tasks",
         element: (
           <PrivateRoute>
             <SubmittedTasks />
