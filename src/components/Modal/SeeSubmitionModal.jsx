@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-const SeeSubmitionModal = ({ closeModal, isOpen, contest }) => {
+const SeeSubmitionModal = ({ closeModal, isOpen, task }) => {
   return (
     <Dialog
       open={isOpen}
@@ -30,7 +30,7 @@ const SeeSubmitionModal = ({ closeModal, isOpen, contest }) => {
               </button>
             </div>
             <div className="mt-2">
-              <p>{contest?.submitedTask}</p>
+              <p>{task}</p>
             </div>
           </DialogPanel>
         </div>

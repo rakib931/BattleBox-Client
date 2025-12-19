@@ -19,6 +19,7 @@ import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import MySubmitions from "../pages/Dashboard/Customer/MySubmitions";
 import MyCreatedContests from "../pages/Dashboard/ContestCreator/MyCreatedContests";
 import SubmittedTasks from "../pages/Dashboard/ContestCreator/SubmittedTasks";
+import MyWinningContests from "../pages/Dashboard/Customer/MyWinningContests";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +109,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ContestCreatorReq />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-wining-contests",
+        element: (
+          <PrivateRoute>
+            <MyWinningContests />
           </PrivateRoute>
         ),
       },

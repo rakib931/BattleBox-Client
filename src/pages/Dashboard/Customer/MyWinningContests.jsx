@@ -1,18 +1,19 @@
 import React from "react";
+import MyWiningDataRow from "../../../components/Dashboard/TableRows/MyWiningDataRow";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import MySubmitationDataRow from "../../../components/Dashboard/TableRows/MySubmitationDataRow";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
-const MySubmitions = () => {
+const MyWinningContests = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: contests = [], isLoading } = useQuery({
+  const { data: wins = [], isLoading } = useQuery({
     queryKey: ["participent-submition"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/participent-submition");
+      const { data } = await axiosSecure("/contest-winned");
       return data;
     },
   });
+
   if (isLoading) return <LoadingSpinner />;
   return (
     <div className="container mx-auto px-4 sm:px-8">
@@ -26,32 +27,31 @@ const MySubmitions = () => {
                     scope="col"
                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                   >
-                    Image
+                    image
                   </th>
                   <th
                     scope="col"
                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                   >
-                    Name
+                    Prize
                   </th>
                   <th
                     scope="col"
                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                   >
-                    Category
+                    Contest Name
                   </th>
-
                   <th
                     scope="col"
                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                   >
-                    Action
+                    Mark
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {contests.map((contest) => (
-                  <MySubmitationDataRow contest={contest} key={contest?._id} />
+                {wins.map((win) => (
+                  <MyWiningDataRow key={win?._id} win={win} />
                 ))}
               </tbody>
             </table>
@@ -62,4 +62,4 @@ const MySubmitions = () => {
   );
 };
 
-export default MySubmitions;
+export default MyWinningContests;

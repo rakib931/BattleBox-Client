@@ -3,6 +3,7 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 const TaskSubmitModal = ({ closeModal, isOpen, contest }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -20,11 +21,14 @@ const TaskSubmitModal = ({ closeModal, isOpen, contest }) => {
       customerEmail: user?.email,
       customerImage: user?.photoURL,
       contestName: contest?.contestName,
+      price: contest?.price,
+      contestId: contest?.contestId,
+      prizeMoney: contest?.prizeMoney,
       image: contest?.image,
     };
     try {
-      const result = await axiosSecure.post("/submit-task", taskData);
-      console.log(result);
+      await axiosSecure.post("/submit-task", taskData);
+      toast.success("Your Task Submited");
     } catch (error) {
       console.log(error);
     } finally {

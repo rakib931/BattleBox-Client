@@ -2,8 +2,9 @@ import React from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
-const WinnerModal = ({ isOpen, task, closeModal }) => {
+const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
   const axiosSecure = useAxiosSecure();
   const {
     register,
@@ -26,25 +27,32 @@ const WinnerModal = ({ isOpen, task, closeModal }) => {
       winnerImage: task?.customerImage,
       winnerMarks: Number(marks),
       submitedTask,
+      contestName: task?.contestName,
+      prize: task?.prizeMoney,
       creator: task?.creator, // optional
     };
     try {
-      await axiosSecure.post("/add-winner", winnerData);
-      
+      const { data } = await axiosSecure.post("/add-winner", winnerData);
+      if (data === "Already Decleared Winner") {
+        toast.error(data);
+      }
+      if (data === "Winner Decleared") {
+        toast.success(data);
+      }
     } catch (error) {
       console.log(error);
     } finally {
-      closeModal();
+      closeModalWin();
       reset();
     }
   };
 
   return (
     <Dialog
-      open={isOpen}
+      open={isOpenWin}
       as="div"
       className="relative z-10 focus:outline-none "
-      onClose={closeModal}
+      onClose={closeModalWin}
     >
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
@@ -62,7 +70,7 @@ const WinnerModal = ({ isOpen, task, closeModal }) => {
               <button
                 type="button"
                 className="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                onClick={closeModal}
+                onClick={closeModalWin}
               >
                 X
               </button>
