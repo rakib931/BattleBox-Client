@@ -10,6 +10,7 @@ const TaskSubmitModal = ({ closeModal, isOpen, contest }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
@@ -27,11 +28,17 @@ const TaskSubmitModal = ({ closeModal, isOpen, contest }) => {
       image: contest?.image,
     };
     try {
-      await axiosSecure.post("/submit-task", taskData);
-      toast.success("Your Task Submited");
+      const { data } = await axiosSecure.post("/submit-task", taskData);
+      if (data === "Task Already Submited") {
+        toast.error(data);
+      }
+      if (data === "Task Submited") {
+        toast.success(data);
+      }
     } catch (error) {
       console.log(error);
     } finally {
+      reset();
       closeModal();
     }
   };

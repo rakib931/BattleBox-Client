@@ -28,6 +28,7 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
       winnerMarks: Number(marks),
       submitedTask,
       contestName: task?.contestName,
+      contestId: task?.contestId,
       prize: task?.prizeMoney,
       creator: task?.creator, // optional
     };
