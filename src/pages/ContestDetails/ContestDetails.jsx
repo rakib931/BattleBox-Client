@@ -9,15 +9,24 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import Winner from "./Winner";
+import { useEffect } from "react";
+import axios from "axios";
+import TaskSubmitModal from "../../components/Modal/TaskSubmitModal";
+import useAuth from "../../hooks/useAuth";
 
 const ContestDetails = () => {
+  const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
+  let [isOpenSub, setIsOpenSub] = useState(false);
   const closeModal = () => {
     setIsOpen(false);
   };
-
+  const closeModalSub = () => {
+    setIsOpenSub(false);
+  };
+  // get data for page and is isPaid
   const { data = {}, isPending } = useQuery({
     queryKey: ["contest", id],
     queryFn: async () => {
@@ -25,10 +34,19 @@ const ContestDetails = () => {
       return res.data;
     },
   });
-
   const { contest, isPaid } = data;
   console.log(isPaid, contest);
 
+  // add data in orders collection
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+  useEffect(() => {
+    if (sessionId) {
+      axios.post(`${import.meta.env.VITE_API_URL}/payments-success`, {
+        sessionId,
+      });
+    }
+  }, [sessionId]);
   if (isPending) return <LoadingSpinner />;
   return (
     <Container>
@@ -84,7 +102,11 @@ const ContestDetails = () => {
             <p className="font-bold text-3xl text-gray-500">
               Price: {contest?.price}$
             </p>
-            {new Date(Date.now()) < new Date(contest?.deadline) ? (
+            {isPaid ? (
+              <p className="font-semibold text-red-500">
+                You AllReady Purchased <br /> Please Submit Your Task
+              </p>
+            ) : new Date(Date.now()) < new Date(contest?.deadline) ? (
               <div>
                 <Button onClick={() => setIsOpen(true)} label="Purchase" />
               </div>
@@ -95,14 +117,19 @@ const ContestDetails = () => {
             )}
           </div>
 
-          <hr className="my-6" />
-          {isPaid ? (
-            <div className="flex justify-between">
-              <Button label="submit" />
-            </div>
-          ) : (
-            ""
-          )}
+          <hr className="mt-6" />
+          <div className="mb-2">
+            <p className="pb-3 font-semibold text-center">Please Submit your Task</p>
+            {isPaid ? (
+              <Button label={"Submit"} onClick={() => setIsOpenSub(true)} />
+            ) : (
+              ""
+            )}
+            <TaskSubmitModal
+              isOpenSub={isOpenSub}
+              closeModalSub={closeModalSub}
+            />
+          </div>
 
           <PurchaseModal
             contest={contest}

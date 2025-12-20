@@ -8,18 +8,17 @@ import AddPlant from "../pages/Dashboard/ContestCreator/AddContest";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import MainLayout from "../layouts/MainLayout";
-import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import ContestDetails from "../pages/ContestDetails/ContestDetails";
 import ContestCreatorReq from "../pages/Dashboard/Admin/ContestCreatorReq";
 import AllContest from "../pages/AllContests/AllContests";
 import ManagePendingContest from "../pages/Dashboard/Admin/ManagePendingContest";
-import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import MySubmitions from "../pages/Dashboard/Customer/MySubmitions";
 import MyCreatedContests from "../pages/Dashboard/ContestCreator/MyCreatedContests";
 import SubmittedTasks from "../pages/Dashboard/ContestCreator/SubmittedTasks";
 import MyWinningContests from "../pages/Dashboard/Customer/MyWinningContests";
 import Leaderboard from "../pages/Dashboard/Customer/Leaderboard";
+import ContestParticipated from "../pages/Dashboard/Customer/ContestParticipated";
 
 export const router = createBrowserRouter([
   {
@@ -41,14 +40,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ContestDetails />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/payment-success",
-        element: (
-          <PrivateRoute>
-            <PaymentSuccess />
           </PrivateRoute>
         ),
       },
@@ -132,7 +123,7 @@ export const router = createBrowserRouter([
         path: "participated",
         element: (
           <PrivateRoute>
-            <MyOrders />
+            <ContestParticipated />
           </PrivateRoute>
         ),
       },

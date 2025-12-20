@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 const Chart = ({ singelUser }) => {
-  const data01 = [
+  const data = [
     { value: singelUser?.participated },
     { value: singelUser?.win },
   ];
@@ -33,14 +33,14 @@ const Chart = ({ singelUser }) => {
       <ResponsiveContainer>
         <PieChart>
           <Pie
-            data={data01}
+            data={data}
             dataKey="value"
             cx={200}
             cy={200}
             innerRadius={80}
             outerRadius={100}
           >
-            {data01.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}

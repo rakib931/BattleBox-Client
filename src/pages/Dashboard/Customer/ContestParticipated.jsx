@@ -1,7 +1,7 @@
 import ParticipetedDataRow from "../../../components/Dashboard/TableRows/ParticipetedDataRow";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-const MyOrders = () => {
+const ContestParticipated = () => {
   const axiosSecure = useAxiosSecure();
   const { data: contests = [] } = useQuery({
     queryKey: ["my-participent"],
@@ -56,13 +56,6 @@ const MyOrders = () => {
                     >
                       Pize Money
                     </th>
-                    
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Action
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,4 +72,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default ContestParticipated;
