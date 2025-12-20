@@ -1,6 +1,6 @@
 import Contests from "../../components/Home/Contests";
 import ContestBanner from "./ContestBanner";
-import WinnersSection from "./WinersSection";
+import WinnersSection from "./Winners/WinersSection";
 const Home = () => {
   return (
     <div>
