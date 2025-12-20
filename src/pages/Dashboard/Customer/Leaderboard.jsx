@@ -5,10 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 
 const Leaderboard = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: winners = [], isloading } = useQuery({
+  const { data: users = [], isloading } = useQuery({
     queryKey: ["Winners for leaderboard"],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/winners-leaderboard`);
+      const { data } = await axiosSecure("/leaderboard-users");
       return data;
     },
   });
@@ -38,13 +38,13 @@ const Leaderboard = () => {
                     scope="col"
                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                   >
-                    wins
+                    Contest Win
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {winners.map((winner) => (
-                  <LeaderBoardRow key={winner?._id} winner={winner} />
+                {users.map((user) => (
+                  <LeaderBoardRow key={user?._id} user={user} />
                 ))}
               </tbody>
             </table>

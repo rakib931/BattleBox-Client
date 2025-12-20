@@ -3,7 +3,7 @@ import Countdown from "../../pages/ContestDetails/Countdown";
 // const deadline = "2025-12-31T23:59:00.000Z";
 //                   2025-12-18T11:45:00.000Z
 const Card = ({ contest }) => {
-  console.log(contest);
+  // console.log(contest);
   return (
     <Link
       to={`/contest/${contest?._id}`}

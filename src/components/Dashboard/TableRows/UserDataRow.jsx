@@ -3,16 +3,29 @@ import { useState } from "react";
 import UpdateRoleManageUserPageModal from "../../Modal/UpdateRoleManageUserPageModal";
 // import { useQuery } from "@tanstack/react-query";
 
-const UserDataRow = ({ usar,refetch }) => {
+const UserDataRow = ({ user, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{usar?.email}</p>
+        <div className="flex items-center">
+          <div className="shrink-0">
+            <div className="block relative">
+              <img
+                alt="profile"
+                src={user?.image}
+                className="mx-auto object-cover rounded h-10 w-15 "
+              />
+            </div>
+          </div>
+        </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{usar?.role}</p>
+        <p className="text-gray-900 ">{user?.email}</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 ">{user?.role}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <span
@@ -27,9 +40,9 @@ const UserDataRow = ({ usar,refetch }) => {
         </span>
         {/* Modal */}
         <UpdateRoleManageUserPageModal
-        key={usar._id}
-        usar={usar}
-        refetch={refetch}
+          key={user._id}
+          usar={user}
+          refetch={refetch}
           isOpen={isOpen}
           closeModal={closeModal}
         />

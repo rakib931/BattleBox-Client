@@ -13,19 +13,20 @@ import MenuItem from "./Menu/MenuItem";
 import AdminMenu from "./Menu/AdminMenu";
 import ContestCreatorMenu from "./Menu/ContestCreatorMenu";
 import ParticipentMenu from "./Menu/ParticipentMenu";
-// import useRole from "../../../hooks/useRole";
+import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  // const [role, isRoleLoading] = useRole();
+  const [role, isRoleLoading] = useRole();
+  console.log(role);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
-  // if (isRoleLoading) return <LoadingSpinner />;
+  if (isRoleLoading) return <LoadingSpinner />;
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}

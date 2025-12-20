@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeaderBoardRow = ({ winner, prizeCount }) => {
+const LeaderBoardRow = ({ user}) => {
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -9,7 +9,7 @@ const LeaderBoardRow = ({ winner, prizeCount }) => {
             <div className="block relative">
               <img
                 alt="profile"
-                src={winner?.winnerImage}
+                src={user?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
@@ -17,10 +17,10 @@ const LeaderBoardRow = ({ winner, prizeCount }) => {
         </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{winner?.winnerName}</p>
+        <p className="text-gray-900 ">{user?.name}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{prizeCount}</p>
+        <p className="text-gray-900 ">{user?.win}</p>
       </td>
     </tr>
   );

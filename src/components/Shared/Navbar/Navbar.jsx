@@ -53,41 +53,7 @@ const Navbar = () => {
               <img src={logo} alt="logo" height={"50"} width={"70"} />
             </Link>
             <div className="hidden md:block">{links}</div>
-            <label className="flex cursor-pointer items-center my-5 gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-              </svg>
-              <input
-                onChange={(e) => handleTheme(e.target.checked)}
-                type="checkbox"
-                defaultChecked={localStorage.getItem("theme") === "dark"}
-                className="toggle mx-2"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            </label>
+
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
@@ -128,6 +94,57 @@ const Navbar = () => {
                         >
                           Dashboard
                         </Link>
+                        <label className="toggle text-base-content mx-4">
+                          <input
+                            onChange={(e) => handleTheme(e.target.checked)}
+                            defaultChecked={
+                              localStorage.getItem("theme") === "dark"
+                            }
+                            type="checkbox"
+                            value="synthwave"
+                            className="theme-controller"
+                          />
+
+                          <svg
+                            aria-label="sun"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                          >
+                            <g
+                              strokeLinejoin="round"
+                              strokeLinecap="round"
+                              strokeWidth="2"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <circle cx="12" cy="12" r="4"></circle>
+                              <path d="M12 2v2"></path>
+                              <path d="M12 20v2"></path>
+                              <path d="m4.93 4.93 1.41 1.41"></path>
+                              <path d="m17.66 17.66 1.41 1.41"></path>
+                              <path d="M2 12h2"></path>
+                              <path d="M20 12h2"></path>
+                              <path d="m6.34 17.66-1.41 1.41"></path>
+                              <path d="m19.07 4.93-1.41 1.41"></path>
+                            </g>
+                          </svg>
+
+                          <svg
+                            aria-label="moon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                          >
+                            <g
+                              strokeLinejoin="round"
+                              strokeLinecap="round"
+                              strokeWidth="2"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                            </g>
+                          </svg>
+                        </label>
                         <div
                           onClick={logOut}
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
