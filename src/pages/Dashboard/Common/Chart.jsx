@@ -19,13 +19,11 @@ const Chart = ({ singelUser }) => {
       <ul className="flex justify-between w-[400px] mx-auto">
         <li className="flex items-center gap-2">
           <div className="px-1 py-1.5 rounded-full w-3 h-2 bg-[#0088FE]"></div>
-          Participated Contest :
-          <span>{singelUser?.participated}</span>
+          Participated Contest :<span>{singelUser?.participated}</span>
         </li>
         <li className="flex items-center gap-2">
           <div className="px-1 py-1.5 rounded-full w-3 h-2 bg-[#00C49F]"></div>
-          Win : 
-          <span>{singelUser?.win}</span>
+          Win :<span>{singelUser?.win}</span>
         </li>
       </ul>
     );

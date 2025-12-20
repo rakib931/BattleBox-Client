@@ -1,31 +1,28 @@
-import React from "react";
+// import React, { useEffect } from "react";
 import Card from "../../components/Home/Card";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { useState } from "react";
 const AllContest = () => {
-  const { user } = useAuth();
-  const [category, SetCategory] = useState();
-  console.log(category);
+  // const { user } = useAuth();
+  const [category, setCategory] = useState("");
 
-  const {
-    data: contests = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["contests", user?.email],
+  const { data: contests = [], isLoading } = useQuery({
+    queryKey: ["contests", category],
     queryFn: async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/approved-contest/${category}`
-      );
+      const url = category
+        ? `${import.meta.env.VITE_API_URL}/approved-contest/${category}`
+        : `${import.meta.env.VITE_API_URL}/approved-contest`;
+
+      const { data } = await axios.get(url);
       return data;
     },
   });
 
   if (isLoading) return <LoadingSpinner />;
-  console.log(contests);
+  console.log("from tanstack query", contests);
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10">
       {/* Page Header */}
@@ -34,32 +31,39 @@ const AllContest = () => {
         <p className="text-gray-600 mt-2">
           Explore and participate in exciting contests
         </p>
-        <div className="my-5">
+        <div className="flex gap-5 px-40 mt-5">
           <button
-            onClick={() => {
-              SetCategory("Graphic Design"), refetch();
-            }}
-            className="btn btn-secondary mx-2"
+            onClick={() => setCategory("")}
+            className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600 font-semibold"
+          >
+            All
+          </button>
+          <button
+            onClick={() => setCategory("Graphic Design")}
+            className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600 font-semibold"
           >
             Graphic Design
           </button>
           <button
-            onClick={() => {
-              SetCategory("Music"), refetch();
-            }}
-            className="btn btn-secondary mx-2"
+            onClick={() => setCategory("Music")}
+            className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600 font-semibold"
           >
             {" "}
             Music
           </button>
           <button
-            onClick={() => {
-              SetCategory("Photography"), refetch();
-            }}
-            className="btn btn-secondary mx-2"
+            onClick={() => setCategory("Photography")}
+            className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600 font-semibold"
           >
             Photography
           </button>
+          <button
+            onClick={() => setCategory("Web Development")}
+            className="w-full p-3 text-white rounded bg-lime-500 hover:bg-lime-600 font-semibold"
+          >
+            Web Development
+          </button>
+          
         </div>
       </div>
 

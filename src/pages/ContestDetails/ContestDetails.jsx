@@ -4,7 +4,7 @@ import Button from "../../components/Shared/Button/Button";
 import PurchaseModal from "../../components/Modal/PurchaseModal";
 import { useState } from "react";
 import Countdown from "./Countdown";
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
@@ -14,18 +14,20 @@ const ContestDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
-
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  const { data: contest = {}, isPending } = useQuery({
+  const { data = {}, isPending } = useQuery({
     queryKey: ["contest", id],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/contests/${id}`);
-      return data;
+      const res = await axiosSecure(`/contests/${id}`);
+      return res.data;
     },
   });
+
+  const { contest, isPaid } = data;
+  console.log(isPaid, contest);
 
   if (isPending) return <LoadingSpinner />;
   return (
@@ -92,7 +94,15 @@ const ContestDetails = () => {
               </p>
             )}
           </div>
+
           <hr className="my-6" />
+          {isPaid ? (
+            <div className="flex justify-between">
+              <Button label="submit" />
+            </div>
+          ) : (
+            ""
+          )}
 
           <PurchaseModal
             contest={contest}
