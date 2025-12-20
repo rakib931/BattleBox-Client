@@ -4,13 +4,24 @@ import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import UpdateProfileModal from "../../../components/Modal/UpdateProfileModal";
 import { useState } from "react";
+import Chart from "./Chart";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Profile = () => {
   const closeModal = () => setIsOpen(false);
   let [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const [role, isRoleLoading] = useRole();
- 
+  const axiosSecure = useAxiosSecure();
+  const { data: singelUser = {} } = useQuery({
+    queryKey: ["Winners for leaderboard"],
+    queryFn: async () => {
+      const { data } = await axiosSecure("/user-profile");
+      return data;
+    },
+  });
+  // console.log(user);
   if (isRoleLoading) return <LoadingSpinner />;
   return (
     <div className="flex justify-center items-center h-screen">
@@ -60,13 +71,12 @@ const Profile = () => {
                   closeModal={closeModal}
                   isOpen={isOpen}
                 />
-
-                <button className="bg-lime-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800">
-                  Change Password
-                </button>
               </div>
             </div>
           </div>
+        </div>
+        <div className="w-5xl">
+          <Chart singelUser={singelUser} />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const UpdateProfileModal = ({ isOpen, closeModal, user }) => {
   const { updateUserProfile } = useAuth();
 
   const onSubmit = async (data) => {
-    const { name, email, image } = data;
+    const { name, image } = data;
     const imgFile = image[0];
 
     let imageURL = user?.photoURL;
@@ -16,7 +16,6 @@ const UpdateProfileModal = ({ isOpen, closeModal, user }) => {
       imageURL = await imageUpload(imgFile);
     }
 
-    console.log({ name, email, imageURL });
     await updateUserProfile(name, imageURL);
     toast.success("Profile updated");
     closeModal();
@@ -45,6 +44,7 @@ const UpdateProfileModal = ({ isOpen, closeModal, user }) => {
             <label className="block text-sm font-medium">Email</label>
             <input
               defaultValue={user?.email}
+              readOnly
               type="email"
               {...register("email")}
               className="w-full mt-1 px-3 py-2 border rounded-md bg-gray-100"
