@@ -1,3 +1,5 @@
+import Countdown from "../../../pages/ContestDetails/Countdown";
+
 const ParticipetedDataRow = ({ contest }) => {
   return (
     <tr>
@@ -22,10 +24,13 @@ const ParticipetedDataRow = ({ contest }) => {
         <p className="text-gray-900">{contest?.category}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{contest?.instruction}</p>
+        <Countdown deadline={contest?.deadline} />
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900">${contest?.price}</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">Paid</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900">${contest?.prizeMoney}</p>
