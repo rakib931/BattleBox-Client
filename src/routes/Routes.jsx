@@ -19,6 +19,7 @@ import SubmittedTasks from "../pages/Dashboard/ContestCreator/SubmittedTasks";
 import MyWinningContests from "../pages/Dashboard/Customer/MyWinningContests";
 import Leaderboard from "../pages/Dashboard/Customer/Leaderboard";
 import ContestParticipated from "../pages/Dashboard/Customer/ContestParticipated";
+import Statistics from "../pages/Dashboard/Common/Statistics";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "add-contest",
         element: (

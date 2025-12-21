@@ -53,7 +53,7 @@ const ContestBayerDataRow = ({ task }) => {
         />
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        {new Date(Date.now()) < new Date(task?.deadline) ? (
+        {/* {new Date(Date.now()) < new Date(task?.deadline) ? ( */}
           <div className="flex flex-col items-center jus">
             <p>Deadline Running</p>
             <Countdown deadline={task?.deadline} />
@@ -66,7 +66,7 @@ const ContestBayerDataRow = ({ task }) => {
             <span className="absolute cursor-pointer inset-0 bg-green-300 opacity-50 rounded-full"></span>
             <span className="relative cursor-pointer">Set Winner</span>
           </button>
-        )}
+        {/* )} */}
         <WinnerModal
           task={task}
           isOpenWin={isOpenWin}

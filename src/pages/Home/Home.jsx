@@ -1,5 +1,6 @@
 import Contests from "../../components/Home/Contests";
 import ContestBanner from "./ContestBanner";
+import Reviews from "./Reviews";
 import WinnersSection from "./Winners/WinersSection";
 const Home = () => {
   return (
@@ -10,6 +11,8 @@ const Home = () => {
       <Contests />
       {/* winers section */}
       <WinnersSection />
+      {/* Review section  */}
+      <Reviews />
     </div>
   );
 };
