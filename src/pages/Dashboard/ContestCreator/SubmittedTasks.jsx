@@ -4,9 +4,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import ContestBayerDataRow from "../../../components/Dashboard/TableRows/ContestBayerDataRow";
+import { useParams } from "react-router";
 
 const SubmittedTasks = () => {
-
+  const { id } = useParams();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
@@ -16,7 +17,7 @@ const SubmittedTasks = () => {
   } = useQuery({
     queryKey: ["contest", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure("/participent-submition");
+      const { data } = await axiosSecure(`/creators-submition/${id}`);
       return data;
     },
   });
@@ -59,7 +60,7 @@ const SubmittedTasks = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                     submition
+                      submition
                     </th>
                     <th
                       scope="col"

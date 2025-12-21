@@ -16,11 +16,6 @@ const ContestCreatorMenu = () => {
         label="My Created Contests"
         address="created-contests"
       />
-      <MenuItem
-        icon={SiGoogletasks}
-        label="Submited Tasks"
-        address="submited-tasks"
-      />
     </>
   );
 };

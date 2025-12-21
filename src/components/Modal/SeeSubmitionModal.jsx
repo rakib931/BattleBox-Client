@@ -30,7 +30,27 @@ const SeeSubmitionModal = ({ closeModal, isOpen, task }) => {
               </button>
             </div>
             <div className="mt-2">
-              <p>{task}</p>
+              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                {/* Participant Name */}
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {task?.customerName}
+                </h3>
+
+                {/* Email */}
+                <p className="text-sm text-gray-500 mt-1">
+                  📧 {task?.customerEmail}
+                </p>
+
+                {/* Submitted Task Info */}
+                <div className="mt-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-sm font-medium text-gray-700 mb-1">
+                    Submitted Task
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {task?.submitedTask}
+                  </p>
+                </div>
+              </div>
             </div>
           </DialogPanel>
         </div>

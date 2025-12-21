@@ -1,20 +1,50 @@
 import React from "react";
+import { Trophy } from "lucide-react";
 
 const WinnerCard = ({ winner }) => {
   return (
     <div
       key={winner?._id}
-      className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition"
+      className="relative bg-linear-to-br from-yellow-50 via-white to-yellow-100 
+      p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 
+      text-center overflow-hidden"
     >
-      <img
-        src={winner?.winnerImage}
-        alt={winner?.winnerName}
-        className="w-32 h-32 mx-auto rounded-full object-cover"
-      />
-      <h3 className="text-xl font-semibold mt-4">{winner?.winnerName}</h3>
-      <p className="text-lg text-yellow-600 font-bold">
-        Prize Money : ${winner?.prize}
+      {/* Winner Badge */}
+      <span className="absolute top-4 right-4 bg-yellow-400 text-white text-xs font-bold px-3 py-1 rounded-full">
+        WINNER
+      </span>
+
+      {/* Trophy Icon */}
+      <div className="absolute -top-6 -left-6 bg-yellow-300 p-6 rounded-full opacity-20">
+        <Trophy size={48} />
+      </div>
+
+      {/* Image with gradient ring */}
+      <div
+        className="relative w-36 h-36 mx-auto rounded-full bg-gradient-to-r 
+      from-yellow-400 to-orange-400 p-1"
+      >
+        <img
+          src={winner?.winnerImage}
+          alt={winner?.winnerName}
+          className="w-full h-full rounded-full object-cover bg-white"
+        />
+      </div>
+
+      {/* Name */}
+      <h3 className="text-2xl font-bold mt-5 text-gray-800">
+        {winner?.winnerName}
+      </h3>
+
+      {/* Inspiring Text */}
+      <p className="text-sm text-gray-600 italic mt-2">
+        “Success is earned through passion, creativity, and dedication.”
       </p>
+
+      {/* Prize */}
+      <div className="mt-4 bg-yellow-100 text-yellow-700 font-bold py-2 px-4 rounded-full inline-block">
+        🏆 Prize Money: ${winner?.prize}
+      </div>
     </div>
   );
 };

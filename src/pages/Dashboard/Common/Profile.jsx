@@ -75,13 +75,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        {singelUser?.participated === 0 || singelUser?.win === 0 ? (
-          <div className="">
-            <Chart singelUser={singelUser} />
-          </div>
-        ) : (
-          ""
-        )}
+        <div className=" w-fit mx-auto">
+          <Chart singelUser={singelUser} />
+        </div>
       </div>
     </div>
   );

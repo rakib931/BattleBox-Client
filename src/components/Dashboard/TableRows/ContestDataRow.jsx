@@ -46,7 +46,14 @@ const ContestDataRow = ({ contest, refetch }) => {
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">{contest?.participent}</p>
       </td>
-
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <Link
+          to={`/dashboard/submited-tasks/${contest?._id}`}
+          className="bg-lime-500 px-2 py-1 rounded btn text-white"
+        >
+          See Submitions
+        </Link>{" "}
+      </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <span
           onClick={openModal}

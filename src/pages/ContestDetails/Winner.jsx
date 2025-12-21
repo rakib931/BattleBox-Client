@@ -6,7 +6,7 @@ const Winner = ({ winner }) => {
   }
 console.log(winner);
   return (
-    <div className="w-full max-w-sm mx-auto border rounded-lg shadow-md p-6 flex flex-col items-center">
+    <div className="w-full max-w-sm mx-auto border rounded-lg shadow-md p-6 flex flex-col items-center my-5">
       <h2 className="text-2xl font-bold mb-4">Contest Winner</h2>
       <img
         src={winner.image}

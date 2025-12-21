@@ -9,7 +9,7 @@ const MySubmitions = () => {
   const { data: contests = [], isLoading } = useQuery({
     queryKey: ["participent-submition"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/participent-submition");
+      const { data } = await axiosSecure("/submited-task");
       return data;
     },
   });
