@@ -1,22 +1,30 @@
 import { useState } from "react";
 import Container from "../../components/Shared/Container";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Card from "../../components/Home/Card";
+import BannerCard from "./BannerCard";
 
 const ContestBanner = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-
-  const sampleData = [
-    { id: 1, title: "Web Development Contest" },
-    { id: 2, title: "Graphic Design Challenge" },
-    { id: 3, title: "Hackathon 2025" },
-    { id: 4, title: "AI Bot Building Contest" },
-  ];
+  const {
+    data: contests = [],
+    isloading,
+    refetch,
+  } = useQuery({
+    queryKey: ["contests for banner", query],
+    queryFn: async () => {
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/banner-contest/${query}`
+      );
+      return data;
+    },
+  });
+  console.log(contests);
+  if (isloading) return <LoadingSpinner />;
 
   const handleSearch = () => {
-    const filtered = sampleData.filter((item) =>
-      item.title.toLowerCase().includes(query.toLowerCase())
-    );
-    setResults(filtered);
+    console.log("hello");
   };
 
   return (
@@ -36,13 +44,13 @@ const ContestBanner = () => {
             placeholder="Search contests..."
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value), handleSearch();
+              setQuery(e.target.value), refetch();
             }}
             className="w-full p-3 rounded-xl text-white focus:outline-none"
           />
           <button
             // onChange={handleSearch}
-            // onClick={handleSearch}
+            onClick={handleSearch}
             className="px-6 py-3 bg-white text-indigo-700 rounded-xl font-semibold shadow-md hover:shadow-lg"
           >
             Search
@@ -51,17 +59,13 @@ const ContestBanner = () => {
 
         {/* Results */}
         <div className="w-full max-w-xl mt-4 bg-white text-gray-900 rounded-xl p-4 shadow-lg space-y-2">
-          {results.length === 0 ? (
+          {/* {results.length === 0 ? (
             <p className="text-center opacity-70">
               No results yet. Try searching!
             </p>
           ) : (
-            results.map((item) => (
-              <div key={item.id} className="p-3 rounded-md bg-gray-100">
-                {item.title}
-              </div>
-            ))
-          )}
+            results.map((item) => <BannerCard item={item} />)
+          )} */}
         </div>
       </div>
     </Container>

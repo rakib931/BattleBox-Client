@@ -24,10 +24,12 @@ const TaskSubmitModal = ({ closeModalSub, isOpenSub, contest }) => {
       contestName: contest?.contestName,
       price: contest?.price,
       deadline: contest?.deadline,
-      contestId: contest?.contestId,
+      contestId: contest?._id,
       prizeMoney: contest?.prizeMoney,
       image: contest?.image,
     };
+    console.log(taskData);
+    
     try {
       const { data } = await axiosSecure.post("/submit-task", taskData);
       if (data === "Task Already Submited") {

@@ -27,15 +27,18 @@ const ContestDetails = () => {
     setIsOpenSub(false);
   };
   // get data for page and is isPaid
-  const { data = {}, isPending } = useQuery({
-    queryKey: ["contest", id],
+  const {
+    data = {},
+    isPending,
+    refetch,
+  } = useQuery({
+    queryKey: ["contest", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure(`/contests/${id}`);
+      const res = await axiosSecure(`/contest/${id}`);
       return res.data;
     },
   });
   const { contest, isPaid } = data;
-  console.log(isPaid, contest);
 
   // add data in orders collection
   const [searchParams, setSearchParams] = useSearchParams();
@@ -46,7 +49,8 @@ const ContestDetails = () => {
         sessionId,
       });
     }
-  }, [sessionId]);
+    setTimeout(refetch,1000)
+  }, [sessionId, refetch]);
   if (isPending) return <LoadingSpinner />;
   return (
     <Container>
@@ -72,13 +76,13 @@ const ContestDetails = () => {
             subtitle={`Category: ${contest?.category}`}
           />
           <hr className="my-6" />
-          <div
-            className="
-          text-lg font-light text-neutral-500"
-          >
-            <span className="font-semibold">Description: </span>
+
+          <p className="text-lg font-light text-neutral-500">
+            {" "}
+            <span className="font-semibold"> Description : </span>
             {contest?.description}
-          </div>
+          </p>
+
           <hr className="my-6" />
           <div
             className="
@@ -99,9 +103,14 @@ const ContestDetails = () => {
           </div>
           <hr className="my-6" />
           <div className="flex justify-between">
-            <p className="font-bold text-3xl text-gray-500">
-              Price: {contest?.price}$
-            </p>
+            <div className="">
+              <p className="font-bold text-3xl text-gray-500">
+                Price: {contest?.price}$
+              </p>
+              <p className="font-semibold text-3xl text-gray-500">
+                Participent: {contest?.participent}
+              </p>
+            </div>
             {isPaid ? (
               <p className="font-semibold text-red-500">
                 You AllReady Purchased <br /> Please Submit Your Task
@@ -119,13 +128,18 @@ const ContestDetails = () => {
 
           <hr className="mt-6" />
           <div className="mb-2">
-            <p className="pb-3 font-semibold text-center">Please Submit your Task</p>
             {isPaid ? (
-              <Button label={"Submit"} onClick={() => setIsOpenSub(true)} />
+              <div>
+                <p className="pb-3 font-semibold text-center">
+                  Please Submit your Task
+                </p>
+                <Button label={"Submit"} onClick={() => setIsOpenSub(true)} />
+              </div>
             ) : (
               ""
             )}
             <TaskSubmitModal
+              contest={contest}
               isOpenSub={isOpenSub}
               closeModalSub={closeModalSub}
             />

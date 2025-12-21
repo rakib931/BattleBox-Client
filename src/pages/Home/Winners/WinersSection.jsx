@@ -4,8 +4,9 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import WinnerCard from "./WinnerCard";
 
 const WinnersSection = () => {
+  
   const { data: winners = [], isloading } = useQuery({
-    queryKey: ["Winners for home"],
+    queryKey: ["Winners"],
     queryFn: async () => {
       const { data } = await axios(`${import.meta.env.VITE_API_URL}/winners`);
       return data;

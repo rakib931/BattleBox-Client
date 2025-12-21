@@ -5,29 +5,19 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const PurchaseModal = ({ closeModal, isOpen, contest }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const {
-    _id,
-    contestName,
-    category,
-    price,
-    prizeMoney,
-    description,
-    instruction,
-    image,
-    saller,
-  } = contest;
+
   const handlePayment = async () => {
     const paymentInfo = {
-      contestId: _id,
-      contestName,
-      category,
-      price,
-      prizeMoney,
-      description,
-      instruction,
-      image,
+      contestId: contest?._id,
+      contestName: contest?.contestName,
+      category: contest?.category,
+      price: contest?.price,
+      prizeMoney: contest?.description,
+      description: contest?.description,
+      instruction: contest?.instruction,
+      image: contest?.image,
       quantity: 1,
-      saller,
+      saller: contest?.saller,
       customer: {
         name: user?.displayName,
         email: user?.email,
@@ -61,10 +51,14 @@ const PurchaseModal = ({ closeModal, isOpen, contest }) => {
               Review Info Before Purchase
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Contest: {contestName}</p>
+              <p className="text-sm text-gray-500">
+                Contest: {contest?.contestName}
+              </p>
             </div>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Category: {category}</p>
+              <p className="text-sm text-gray-500">
+                Category: {contest?.category}
+              </p>
             </div>
             <div className="mt-2">
               <p className="text-sm text-gray-500">
@@ -72,7 +66,7 @@ const PurchaseModal = ({ closeModal, isOpen, contest }) => {
               </p>
             </div>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Price: $ {price}</p>
+              <p className="text-sm text-gray-500">Price: $ {contest?.price}</p>
             </div>
             <div className="flex mt-2 justify-around">
               <button
