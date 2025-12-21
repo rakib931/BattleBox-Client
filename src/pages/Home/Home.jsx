@@ -6,6 +6,7 @@ const Home = () => {
     <div>
       {/* Banner section  */}
       <ContestBanner />
+      {/* Popular section  */}
       <Contests />
       {/* winers section */}
       <WinnersSection />
