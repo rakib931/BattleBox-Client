@@ -11,18 +11,21 @@ const Reviews = () => {
   function closeModal() {
     setIsModalOpen(false);
   }
-  const { data: reviews = [], isLoading } = useQuery({
-    queryKey: ["participent-submition"],
+  const {
+    data: reviews = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["reviedsfasdf"],
     queryFn: async () => {
       const { data } = await axiosSecure("/get-review");
       return data;
     },
   });
+  console.log(reviews);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div
-      className=" rounded-2xl mb-8 shadow-sm max-w-6xl mx-auto text-center px-5 py-10"
-    >
+    <div className=" rounded-2xl mb-8 shadow-sm max-w-6xl mx-auto text-center px-5 py-10">
       <h2 className="text-2xl font-bold  mb-2">
         Review Participant Submissions
       </h2>
@@ -52,15 +55,13 @@ const Reviews = () => {
       >
         Add Review
       </button>
-      <AddReviewModal closeModal={closeModal} isModalOpen={isModalOpen} />
+      <AddReviewModal refetch={refetch} closeModal={closeModal} isModalOpen={isModalOpen} />
       <div>
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">
-                What Our Participants Say
-              </h2>
+              <h2 className="text-3xl font-bold">What Our Participants Say</h2>
               <p className=" mt-2 max-w-xl mx-auto">
                 Honest feedback from creators and participants who joined our
                 contests.
@@ -75,10 +76,10 @@ const Reviews = () => {
                   className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition"
                 >
                   <p className="text-gray-600 text-sm italic">
-                    "{review?.review}"
+                    "{review?.reviewText}"
                   </p>
                   <h4 className="mt-4 font-semibold text-gray-800">
-                    {review?.name}
+                    {review?.userName}
                   </h4>
                   <span className="text-xs text-yellow-500">★★★★★</span>
                 </div>

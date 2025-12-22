@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
-const AddReviewModal = ({ closeModal, isModalOpen }) => {
+const AddReviewModal = ({ closeModal, isModalOpen, refetch }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
@@ -14,7 +14,7 @@ const AddReviewModal = ({ closeModal, isModalOpen }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    const review = { review: data.review, name: user?.displayName };
+    const review = { reviewText: data.review, userName: user?.displayName };
     try {
       await axiosSecure.post("/add-review", review);
       toast.success("Review Added");
@@ -22,6 +22,7 @@ const AddReviewModal = ({ closeModal, isModalOpen }) => {
       console.log(error);
     } finally {
       reset();
+      refetch();
       closeModal();
     }
   };

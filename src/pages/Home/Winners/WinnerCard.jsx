@@ -15,7 +15,7 @@ const WinnerCard = ({ winner }) => {
       </span>
 
       {/* Trophy Icon */}
-      <div className="absolute -top-6 -left-6 bg-white/70 dark:text-white p-6 rounded-full opacity-20">
+      <div className="absolute -top-6 -left-6  p-6 rounded-full opacity-20">
         <Trophy  size={48} />
       </div>
 
@@ -32,12 +32,12 @@ const WinnerCard = ({ winner }) => {
       </div>
 
       {/* Name */}
-      <h3 className="text-2xl font-bold mt-5 dark:text-gray-200">
+      <h3 className="text-2xl font-bold  mt-5">
         {winner?.winnerName}
       </h3>
 
       {/* Inspiring Text */}
-      <p className="text-sm dark:text-gray-200 italic mt-2">
+      <p className="text-sm italic mt-2">
         “Success is earned through passion, creativity, and dedication.”
       </p>
 

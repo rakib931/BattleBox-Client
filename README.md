@@ -1,4 +1,4 @@
-# 🌐 Website Name: ContestHub
+# 🌐 Website Name: Battle Box
 
 ## 🔗 Live Site URL
 
