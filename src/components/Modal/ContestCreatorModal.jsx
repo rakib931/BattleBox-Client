@@ -68,7 +68,7 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
                     defaultValue={user?.displayName}
                     type="text"
                     {...register("name", { required: "Name is required" })}
-                    className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 w-full text-black rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     placeholder="Your full name"
                   />
                   {errors.name && (
@@ -93,7 +93,7 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
                         message: "Invalid email",
                       },
                     })}
-                    className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 w-full text-black rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     placeholder="example@email.com"
                   />
                   {errors.email && (
@@ -113,7 +113,7 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
                     {...register("organization", {
                       required: "Organization is required",
                     })}
-                    className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 w-full text-black rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     placeholder="Company or brand name"
                   />
                 </div>
@@ -127,7 +127,7 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
                     {...register("experience", {
                       required: "Please select experience",
                     })}
-                    className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 w-full text-black rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="">Select experience</option>
                     <option value="Beginner">Beginner</option>
@@ -146,7 +146,7 @@ const ContestCreatorModal = ({ closeModal, isOpen }) => {
                     {...register("message", {
                       required: "Message is required",
                     })}
-                    className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 w-full text-black rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     placeholder="Brief explanation..."
                   />
                 </div>

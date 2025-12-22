@@ -41,7 +41,7 @@ const UserDataRow = ({ user, refetch }) => {
         {/* Modal */}
         <UpdateRoleManageUserPageModal
           key={user._id}
-          usar={user}
+          user={user}
           refetch={refetch}
           isOpen={isOpen}
           closeModal={closeModal}

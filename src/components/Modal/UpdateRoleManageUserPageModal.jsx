@@ -2,15 +2,20 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
-const UpdateRoleManageUserPageModal = ({ isOpen, closeModal, usar, refetch }) => {
-  const [updatedRole, setUpdatedRole] = useState(usar?.role);
-
-
+const UpdateRoleManageUserPageModal = ({
+  isOpen,
+  closeModal,
+  user,
+  refetch,
+}) => {
+  const [updatedRole, setUpdatedRole] = useState(user?.role);
   const axiosSecure = useAxiosSecure();
   const updateRole = async () => {
     try {
-      await axiosSecure.patch("/update-role",{email: usar?.email,
-        role: updatedRole} );
+      await axiosSecure.patch("/update-role", {
+        email: user?.email,
+        role: updatedRole,
+      });
       toast.success("User Role Updated");
     } catch (error) {
       console.log(error?.message);
@@ -44,12 +49,12 @@ const UpdateRoleManageUserPageModal = ({ isOpen, closeModal, usar, refetch }) =>
                   <select
                     value={updatedRole}
                     onChange={(e) => setUpdatedRole(e.target.value)}
-                    className="w-full my-3 border border-gray-200 rounded-xl px-2 py-3"
+                    className="w-full my-3 border text-black border-gray-200 rounded-xl px-2 py-3"
                     name="role"
                     id=""
                   >
                     <option value="participent">Participent</option>
-                    <option value="contest-creator">ContestCreator</option>
+                    <option value="creator">ContestCreator</option>
                     <option value="admin">Admin</option>
                   </select>
                 </div>

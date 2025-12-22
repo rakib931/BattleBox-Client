@@ -15,13 +15,14 @@ const SubmittedTasks = () => {
     isloading,
     refetch,
   } = useQuery({
-    queryKey: ["contest", user?.email],
+    queryKey: ["contests", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/creators-submition/${id}`);
       return data;
     },
   });
   if (isloading) return <LoadingSpinner />;
+
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -71,13 +72,13 @@ const SubmittedTasks = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tasks?.map((task) => (
+                 {tasks?.length === 0 ? <p className="py-3 text-center "> No Submition</p> :(tasks?.map((task) => (
                     <ContestBayerDataRow
                       refetch={refetch}
                       task={task}
                       key={task?._id}
                     />
-                  ))}
+                  )))}
                 </tbody>
               </table>
             </div>

@@ -37,7 +37,7 @@ const MySubmitationDataRow = ({ contest }) => {
           <span className="relative cursor-pointer">See Submition</span>
         </button>
         <SeeSubmitionModal
-          task={contest?.submitedTask}
+          task={contest}
           isOpen={isOpen}
           closeModal={closeModal}
         />
