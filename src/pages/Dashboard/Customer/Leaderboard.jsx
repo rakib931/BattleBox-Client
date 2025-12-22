@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import LeaderBoardRow from "../../../components/Dashboard/TableRows/LeaderBoardRow";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const Leaderboard = () => {
+  const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const limit = 10;
+
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], isloading } = useQuery({
-    queryKey: ["Winners for leaderboard"],
+  const { isLoading } = useQuery({
+    queryKey: ["leaderboard-users", currentPage],
     queryFn: async () => {
-      const { data } = await axiosSecure("/leaderboard-users");
-      return data;
+      const res = await axiosSecure(
+        `/leaderboard-users?limit=${limit}&skip=${currentPage * limit}`
+      );
+      setTotalUsers(res?.data?.total);
+      setUsers(res?.data?.users);
+      const page = Math.ceil(res?.data?.total / limit);
+      setTotalPage(page);
+
+      console.log(page);
+      return res.data;
     },
   });
-  if (isloading) return <LoadingSpinner />;
+
+  if (isLoading) return <LoadingSpinner />;
+  console.log(totalUsers, users);
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
@@ -48,6 +65,13 @@ const Leaderboard = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="flex justify-center flex-wrap gap-5 py-5">
+            {[...Array(totalPage).keys()].map((i) => (
+              <button onClick={() => setCurrentPage(i)} className="btn ">
+                {i}
+              </button>
+            ))}
           </div>
         </div>
       </div>

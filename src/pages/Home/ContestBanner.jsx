@@ -29,7 +29,7 @@ const ContestBanner = () => {
 
   return (
     <Container>
-      <div className="w-full bg-indigo-700 text-white py-20 px-6 flex flex-col items-center gap-6 rounded-2xl shadow-xl">
+      <div className="w-full bg-gray-500 dark:bg-gray-500 text-white py-20 px-6 flex flex-col items-center gap-6 rounded-2xl shadow-xl">
         <h1 className="text-4xl font-bold text-center">
           Find Your Next Contest
         </h1>
