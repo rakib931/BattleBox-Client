@@ -20,8 +20,6 @@ const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const [role, isRoleLoading] = useRole();
-  console.log(role);
-
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -75,12 +73,9 @@ const Sidebar = () => {
                 address="/dashboard"
               />
               {/* Role-Based Menu */}
-              <ParticipentMenu />
-              <ContestCreatorMenu />
-              <AdminMenu />
-              {/* {role === "participent" && <ParticipentMenu />}
+              {role === "participent" && <ParticipentMenu />}
               {role === "contest-creator" && <ContestCreatorMenu />}
-              {role === "admin" && <AdminMenu />} */}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
           {/* Bottom Content */}
