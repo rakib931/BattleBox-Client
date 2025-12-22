@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
-import logo from "../../../assets/images/logo.png";
+import dark_logo from "../../../assets/images/logo.png";
+import white_logo from "../../../assets/images/white-logo.png";
 import { useEffect } from "react";
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -21,8 +22,8 @@ const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "text-blue-600 font-semibold border-b-2 mr-2 border-blue-600"
-            : "text-gray-600 hover:text-blue-600 mr-2"
+            ? "dark:text-white/95 font-semibold border-b-2 mr-2 border-blue-600"
+            : "hover:text-blue-400 mr-2 dark:text-white/95"
         }
       >
         Home
@@ -31,8 +32,8 @@ const Navbar = () => {
         to="/all-contest"
         className={({ isActive }) =>
           isActive
-            ? "text-blue-600 font-semibold border-b-2 border-blue-600"
-            : "text-gray-600 hover:text-blue-600"
+            ? "dark:text-white/95 font-semibold border-b-2 border-blue-600"
+            : " hover:text-blue-400 dark:text-white/95"
         }
       >
         All Contest
@@ -44,19 +45,24 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed w-full bg-white dark:bg-gray-400 z-10 shadow-sm">
+    <div className="fixed w-full  dark:bg-gray-400 dark:text-white z-10 shadow-sm">
       <div className="py-4">
         <Container>
           <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
             <Link to="/">
-              <img src={logo} alt="logo" height={"50"} width={"70"} />
+              <img
+                src={theme === "dark" ? white_logo : dark_logo}
+                alt="logo"
+                height={"50"}
+                width={"70"}
+              />
             </Link>
-            <div className="hidden md:block">{links}</div>
+            <div className="hidden md:block dark:text-white">{links}</div>
 
             {/* Dropdown Menu */}
             <div className="relative">
-              <div className="flex flex-row items-center gap-3">
+              <div className="flex flex-row items-center gap-3 ">
                 {/* Dropdown btn */}
                 <div
                   onClick={() => setIsOpen(!isOpen)}
@@ -77,11 +83,11 @@ const Navbar = () => {
                 </div>
               </div>
               {isOpen && (
-                <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
+                <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white/20 text-black overflow-hidden right-0 top-12 text-sm">
                   <div className="flex flex-col cursor-pointer">
                     <Link
                       to="/"
-                      className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                      className="block md:hidden px-4 py-3 hover:bg-white/40 transition font-semibold"
                     >
                       Home
                     </Link>
@@ -90,7 +96,7 @@ const Navbar = () => {
                       <>
                         <Link
                           to="/dashboard"
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          className="px-4 py-3 hover:bg-white/40 transition font-semibold"
                         >
                           Dashboard
                         </Link>
@@ -147,7 +153,7 @@ const Navbar = () => {
                         </label>
                         <div
                           onClick={logOut}
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                          className="px-4 py-3 hover:bg-white/40 transition font-semibold cursor-pointer"
                         >
                           Logout
                         </div>
@@ -156,13 +162,13 @@ const Navbar = () => {
                       <>
                         <Link
                           to="/login"
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          className="px-4 py-3 hover:bg-white/40 transition font-semibold"
                         >
                           Login
                         </Link>
                         <Link
                           to="/signup"
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          className="px-4 py-3 hover:bg-white/40 transition font-semibold"
                         >
                           Sign Up
                         </Link>

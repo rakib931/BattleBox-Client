@@ -14,10 +14,10 @@ const WinnersSection = () => {
   });
   if (isloading) return <LoadingSpinner />;
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="max-w-6xl mx-auto text-center px-4">
-        <h2 className="text-3xl font-bold text-gray-800">🏆 Contest Winners</h2>
-        <p className="text-gray-500 mt-2">
+        <h2 className="text-3xl font-bold">🏆 Contest Winners</h2>
+        <p className=" mt-2">
           Here are the top performers from the recent contest
         </p>
 

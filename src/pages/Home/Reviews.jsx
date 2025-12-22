@@ -21,17 +21,16 @@ const Reviews = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div
-      className="bg-linear-to-r from-indigo-50 to-blue-50 
-  border border-indigo-100 rounded-2xl mb-8 shadow-sm max-w-6xl mx-auto text-center px-5 py-10"
+      className=" rounded-2xl mb-8 shadow-sm max-w-6xl mx-auto text-center px-5 py-10"
     >
-      <h2 className="text-2xl font-bold text-indigo-700 mb-2">
+      <h2 className="text-2xl font-bold  mb-2">
         Review Participant Submissions
       </h2>
 
-      <p className="text-gray-600 text-sm max-w-2xl">
+      <p className=" text-sm max-w-2xl">
         Carefully review each participant’s submission below. Check creativity,
         accuracy, and effort before declaring a winner. Remember, only{" "}
-        <span className="font-semibold text-indigo-600">one winner</span> can be
+        <span className="font-semibold text-lime-500">one winner</span> can be
         selected for this contest.
       </p>
       <div className="mt-4"></div>
@@ -49,20 +48,20 @@ const Reviews = () => {
       </div>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="px-6 py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        className="px-6 py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition my-5"
       >
         Add Review
       </button>
       <AddReviewModal closeModal={closeModal} isModalOpen={isModalOpen} />
       <div>
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-800">
+              <h2 className="text-3xl font-bold">
                 What Our Participants Say
               </h2>
-              <p className="text-gray-600 mt-2 max-w-xl mx-auto">
+              <p className=" mt-2 max-w-xl mx-auto">
                 Honest feedback from creators and participants who joined our
                 contests.
               </p>

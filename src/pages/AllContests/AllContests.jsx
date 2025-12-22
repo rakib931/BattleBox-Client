@@ -24,11 +24,11 @@ const AllContest = () => {
   if (isLoading) return <LoadingSpinner />;
   console.log("from tanstack query", contests);
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-10">
+    <div className="min-h-screen  px-4 py-10">
       {/* Page Header */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-gray-800">All Contests</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold">All Contests</h1>
+        <p className=" mt-2">
           Explore and participate in exciting contests
         </p>
         <div className="flex gap-5 px-40 mt-5">

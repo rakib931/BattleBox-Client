@@ -3,7 +3,7 @@ import Countdown from "../../pages/ContestDetails/Countdown";
 
 const Card = ({ contest }) => {
   return (
-    <div className="col-span-1 shadow-xl rounded-xl overflow-hidden group">
+    <div className="col-span-1 shadow-xl  rounded-xl overflow-hidden group">
       {/* IMAGE */}
       <div className=" h-56 overflow-hidden">
         <img
@@ -20,10 +20,10 @@ const Card = ({ contest }) => {
         </h3>
 
         {/* CATEGORY */}
-        <p className="text-sm text-gray-500">Category: {contest?.category}</p>
+        <p className="text-sm">Category: {contest?.category}</p>
 
         {/* SHORT DESCRIPTION */}
-        <p className="text-sm text-gray-600">
+        <p className="text-sm">
           {contest?.description?.slice(0, 60)}...
         </p>
 

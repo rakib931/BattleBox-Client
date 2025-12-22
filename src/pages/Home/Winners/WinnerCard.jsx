@@ -5,7 +5,7 @@ const WinnerCard = ({ winner }) => {
   return (
     <div
       key={winner?._id}
-      className="relative bg-linear-to-br from-yellow-50 via-white to-yellow-100 
+      className="relative bg-linear-to-br 
       p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 
       text-center overflow-hidden"
     >
@@ -15,13 +15,13 @@ const WinnerCard = ({ winner }) => {
       </span>
 
       {/* Trophy Icon */}
-      <div className="absolute -top-6 -left-6 bg-yellow-300 p-6 rounded-full opacity-20">
-        <Trophy size={48} />
+      <div className="absolute -top-6 -left-6 bg-white/70 dark:text-white p-6 rounded-full opacity-20">
+        <Trophy  size={48} />
       </div>
 
       {/* Image with gradient ring */}
       <div
-        className="relative w-36 h-36 mx-auto rounded-full bg-gradient-to-r 
+        className="relative w-36 h-36 mx-auto rounded-full bg-linear-to-r 
       from-yellow-400 to-orange-400 p-1"
       >
         <img
@@ -32,12 +32,12 @@ const WinnerCard = ({ winner }) => {
       </div>
 
       {/* Name */}
-      <h3 className="text-2xl font-bold mt-5 text-gray-800">
+      <h3 className="text-2xl font-bold mt-5 dark:text-gray-200">
         {winner?.winnerName}
       </h3>
 
       {/* Inspiring Text */}
-      <p className="text-sm text-gray-600 italic mt-2">
+      <p className="text-sm dark:text-gray-200 italic mt-2">
         “Success is earned through passion, creativity, and dedication.”
       </p>
 
