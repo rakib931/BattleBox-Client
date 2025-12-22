@@ -1,16 +1,26 @@
-# React + Vite
+# 🌐 Website Name: ContestHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔗 Live Site URL
 
-Currently, two official plugins are available:
+[https://your-live-site-url.com](https://your-live-site-url.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Website Features
 
-## React Compiler
+* 🎯 ব্যবহারকারীরা বিভিন্ন ধরনের কনটেস্ট দেখতে ও অংশগ্রহণ করতে পারে
+* 👤 ইউজার রেজিস্ট্রেশন ও লগইন সিস্টেম (JWT/Auth ভিত্তিক)
+* 🌗 লাইট ও ডার্ক থিম টগল সুবিধা
+* 🏆 জনপ্রিয় কনটেস্ট আলাদা করে দেখানো হয় (Highest Participation অনুযায়ী)
+* 📝 ইউজাররা কনটেস্টে সাবমিশন দিতে পারে
+* ⭐ রিভিউ ও রেটিং সিস্টেম যুক্ত আছে
+* 🔍 কনটেস্ট সার্চ ও ক্যাটাগরি ফিল্টার সুবিধা
+* 📊 লিডারবোর্ড সিস্টেম (Top Winners দেখানোর জন্য)
+* 💳 পেইড কনটেস্টের জন্য সিকিউর পেমেন্ট সিস্টেম
+* 🛡️ রোল বেসড ড্যাশবোর্ড (Admin / Creator / User)
+* 📱 সম্পূর্ণ রেসপন্সিভ ডিজাইন (Mobile, Tablet, Desktop)
+* ⚡ দ্রুত লোডিং ও স্মুথ ইউজার এক্সপেরিয়েন্স
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+💡 **Technology Used:** React, Tailwind CSS, Node.js, Express, MongoDB
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+❤️ Developed with passion by Rakib Hossain
