@@ -51,7 +51,7 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, request, refetch }) => {
                     id=""
                   >
                     <option value="participent">Participent</option>
-                    <option value="contest-creator">ContestCreator</option>
+                    <option value="creator">ContestCreator</option>
                     <option value="admin">Admin</option>
                   </select>
                 </div>

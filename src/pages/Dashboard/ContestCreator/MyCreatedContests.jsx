@@ -13,7 +13,9 @@ const MyCreatedContests = () => {
   } = useQuery({
     queryKey: ["contest", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure("/contest-inventory");
+      const { data } = await axiosSecure(
+        `/contest-inventory?email=${user?.email}`
+      );
       return data;
     },
   });
@@ -68,7 +70,7 @@ const MyCreatedContests = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                    submitons
+                      submitons
                     </th>
                     <th
                       scope="col"
