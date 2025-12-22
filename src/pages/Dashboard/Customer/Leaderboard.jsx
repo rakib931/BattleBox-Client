@@ -21,9 +21,7 @@ const Leaderboard = () => {
       setTotalUsers(res?.data?.total);
       setUsers(res?.data?.users);
       const page = Math.ceil(res?.data?.total / limit);
-      setTotalPage(page);
-
-      console.log(page);
+      setTotalPage(page); 
       return res.data;
     },
   });
@@ -68,7 +66,7 @@ const Leaderboard = () => {
           </div>
           <div className="flex justify-center flex-wrap gap-5 py-5">
             {[...Array(totalPage).keys()].map((i) => (
-              <button onClick={() => setCurrentPage(i)} className="btn ">
+              <button onClick={() => setCurrentPage(i)} className="btn">
                 {i}
               </button>
             ))}
