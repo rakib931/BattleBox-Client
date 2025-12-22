@@ -22,6 +22,8 @@ import ContestParticipated from "../pages/Dashboard/Customer/ContestParticipated
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import CreatorRoute from "./CreatorRoute";
 import AdminRoute from "./AdminRoute";
+import AboutUs from "../pages/Home/Winners/ExtraPage/AboutUs";
+import Announcements from "../pages/Home/Winners/ExtraPage/Announcements";
 
 export const router = createBrowserRouter([
   {
@@ -30,12 +32,20 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index:true,
+        index: true,
         element: <Home />,
       },
       {
         path: "/all-contest",
         element: <AllContest />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/announcements",
+        element: <Announcements />,
       },
       {
         path: "/contest/:id",

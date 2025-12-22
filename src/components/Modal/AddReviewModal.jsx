@@ -16,13 +16,8 @@ const AddReviewModal = ({ closeModal, isModalOpen }) => {
   const onSubmit = async (data) => {
     const review = { review: data.review, name: user?.displayName };
     try {
-      const { data } = await axiosSecure.post("/add-review", review);
-      if (data === "Task Already Submited") {
-        toast.error(data);
-      }
-      if (data === "Task Submited") {
-        toast.success(data);
-      }
+      await axiosSecure.post("/add-review", review);
+      toast.success("Review Added");
     } catch (error) {
       console.log(error);
     } finally {
@@ -30,7 +25,7 @@ const AddReviewModal = ({ closeModal, isModalOpen }) => {
       closeModal();
     }
   };
- 
+
   return (
     <Dialog
       open={isModalOpen}
@@ -63,7 +58,7 @@ const AddReviewModal = ({ closeModal, isModalOpen }) => {
               <form className="task-form" onSubmit={handleSubmit(onSubmit)}>
                 <textarea
                   {...register("review", {
-                    required: "submitedTask is required",
+                    required: "review is required",
                   })}
                   className="w-full h-32 px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
                   placeholder="Describe the contest details..."

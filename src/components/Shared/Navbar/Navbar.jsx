@@ -22,8 +22,8 @@ const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "dark:text-white/95 font-semibold border-b-2 mr-2 border-blue-600"
-            : "hover:text-blue-400 mr-2 dark:text-white/95"
+            ? "dark:text-white/95 font-semibold border-b-2 mr-3 border-blue-600"
+            : "hover:text-blue-400 mr-3 dark:text-white/95"
         }
       >
         Home
@@ -32,11 +32,31 @@ const Navbar = () => {
         to="/all-contest"
         className={({ isActive }) =>
           isActive
-            ? "dark:text-white/95 font-semibold border-b-2 border-blue-600"
-            : " hover:text-blue-400 dark:text-white/95"
+            ? "dark:text-white/95 font-semibold border-b-2 mr-3 border-blue-600"
+            : " hover:text-blue-400 dark:text-white/95 mr-3"
         }
       >
         All Contest
+      </NavLink>
+      <NavLink
+        to="/about-us"
+        className={({ isActive }) =>
+          isActive
+            ? "dark:text-white/95 font-semibold border-b-2 mr-3 border-blue-600"
+            : " hover:text-blue-400 dark:text-white/95 mr-3"
+        }
+      >
+        About Us
+      </NavLink>
+      <NavLink
+        to="/announcements"
+        className={({ isActive }) =>
+          isActive
+            ? "dark:text-white/95 font-semibold border-b-2 mr-3 border-blue-600"
+            : " hover:text-blue-400 dark:text-white/95 mr-3"
+        }
+      >
+        Announcements
       </NavLink>
     </>
   );
