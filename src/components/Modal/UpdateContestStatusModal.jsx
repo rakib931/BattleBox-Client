@@ -44,7 +44,7 @@ const UpdateContestStatusModal = ({ isOpen, closeModal, contest, refetch }) => {
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
-                    className="w-full my-3 border border-gray-200 rounded-xl px-2 py-3"
+                    className="w-full my-3 border text-black border-gray-200 rounded-xl px-2 py-3"
                     name="role"
                     id=""
                   >

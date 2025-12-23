@@ -14,7 +14,7 @@ const MyCreatedContests = () => {
     queryKey: ["contest", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(
-        `/contest-inventory?email=${user?.email}`
+        `/contest-inventory`
       );
       return data;
     },

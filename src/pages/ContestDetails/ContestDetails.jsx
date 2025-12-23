@@ -49,7 +49,7 @@ const ContestDetails = () => {
         sessionId,
       });
     }
-    setTimeout(refetch,1000)
+    setTimeout(refetch,1500)
   }, [sessionId, refetch]);
   if (isPending) return <LoadingSpinner />;
   return (

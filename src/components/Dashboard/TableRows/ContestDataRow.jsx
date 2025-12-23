@@ -31,19 +31,19 @@ const ContestDataRow = ({ contest, refetch }) => {
           </div>
         </div>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">{contest?.contestName}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">{contest?.category}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">$ {contest?.price}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">$ {contest?.prizeMoney}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">{contest?.participent}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -55,7 +55,8 @@ const ContestDataRow = ({ contest, refetch }) => {
         </Link>{" "}
       </td>
       {/* delete button  */}
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <span
           onClick={status === "approved" ? undefined : () => openModal(true)}
           className={`relative inline-block px-3 py-1 font-semibold leading-tight
@@ -86,8 +87,9 @@ const ContestDataRow = ({ contest, refetch }) => {
           closeModal={closeModal}
         />
       </td>
+
       {/* update button  */}
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
         <span
           onClick={
             status === "approved" ? undefined : () => setIsEditModalOpen(true)
@@ -113,9 +115,6 @@ const ContestDataRow = ({ contest, refetch }) => {
 
           <span className="relative">Update</span>
         </span>
-      </td>
-
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <UpdateContestModal
           refetch={refetch}
           contest={contest}

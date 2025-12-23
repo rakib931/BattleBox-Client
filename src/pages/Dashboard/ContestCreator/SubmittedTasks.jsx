@@ -22,6 +22,7 @@ const SubmittedTasks = () => {
     },
   });
   if (isloading) return <LoadingSpinner />;
+  console.log(tasks);
 
   return (
     <>
@@ -72,13 +73,13 @@ const SubmittedTasks = () => {
                   </tr>
                 </thead>
                 <tbody>
-                 {tasks?.length === 0 ? <p className="py-3 text-center "> No Submition</p> :(tasks?.map((task) => (
+                  {tasks?.map((task) => (
                     <ContestBayerDataRow
                       refetch={refetch}
                       task={task}
                       key={task?._id}
                     />
-                  )))}
+                  ))}
                 </tbody>
               </table>
             </div>

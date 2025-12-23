@@ -1,12 +1,14 @@
 import ParticipetedDataRow from "../../../components/Dashboard/TableRows/ParticipetedDataRow";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 const ContestParticipated = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: contests = [] } = useQuery({
     queryKey: ["my-participent"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/participated");
+      const { data } = await axiosSecure(`/participated`);
       return data;
     },
   });

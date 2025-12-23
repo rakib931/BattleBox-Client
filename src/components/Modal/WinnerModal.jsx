@@ -91,7 +91,7 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
                   type="text"
                   placeholder="Enter name"
                   {...register("customerName")}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 text-black focus:ring-blue-400"
                 />
               </div>
 
@@ -104,7 +104,7 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
                   readOnly
                   type="email"
                   {...register("customerEmail")}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 text-black focus:ring-blue-400"
                 />
               </div>
               {/* Marks Input */}
@@ -115,7 +115,7 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
                 <input
                   type="number"
                   {...register("marks", { required: "Marks is require" })}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 text-black focus:ring-blue-400"
                 />
                 {errors.marks && (
                   <p className="text-red-500 text-xs">{errors.marks.message}</p>
@@ -130,7 +130,7 @@ const WinnerModal = ({ isOpenWin, task, closeModalWin }) => {
                   type="text"
                   readOnly
                   {...register("submitedTask")}
-                  className="w-full h-15 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full h-15 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 text-black focus:ring-blue-400"
                 />
               </div>
 
