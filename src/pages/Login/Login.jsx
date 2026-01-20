@@ -43,6 +43,16 @@ const Login = () => {
       toast.error(err?.message);
     }
   };
+  const demoUser = async () => {
+    const email = "user1@gmail.com";
+    const password = "user1@gmail.com";
+    try {
+      //User Login
+      await signIn(email, password);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Handle Google Signin
   const handleGoogleSignIn = async () => {
@@ -163,6 +173,13 @@ const Login = () => {
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
+        </div>
+        <div className="flex gap-5">
+          <button onClick={demoUser} className="btn btn-outline btn-secondary">
+            Demo User
+          </button>
+          <button className="btn btn-outline btn-primary">Demo</button>
+          <button className="btn btn-outline btn-accent">Accent</button>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Don&apos;t have an account yet?{" "}
