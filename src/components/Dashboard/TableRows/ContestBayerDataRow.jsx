@@ -9,7 +9,7 @@ const ContestBayerDataRow = ({ task }) => {
   function closeModal() {
     SetIsOpen(false);
   }
-  const [isOpenWin, SetIsOpenWin] = useState(false);
+  const [isOpenWin, SetIsOpenWin] = false;
   function closeModalWin() {
     SetIsOpenWin(false);
   }
@@ -59,13 +59,13 @@ const ContestBayerDataRow = ({ task }) => {
             <Countdown deadline={task?.deadline} />
           </div>
         ) : ( */}
-          <button
-            onClick={() => SetIsOpenWin(true)}
-            className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
-          >
-            <span className="absolute cursor-pointer inset-0 bg-green-300 opacity-50 rounded-full"></span>
-            <span className="relative cursor-pointer">Set Winner</span>
-          </button>
+        <button
+          onClick={() => SetIsOpenWin(true)}
+          className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
+        >
+          <span className="absolute cursor-pointer inset-0 bg-green-300 opacity-50 rounded-full"></span>
+          <span className="relative cursor-pointer">Set Winner</span>
+        </button>
         {/* )} */}
         <WinnerModal
           task={task}

@@ -30,7 +30,7 @@ const Reviews = () => {
         Review Participant Submissions
       </h2>
 
-      <p className=" text-sm max-w-2xl">
+      <p className=" text-sm max-w-2xl ">
         Carefully review each participant’s submission below. Check creativity,
         accuracy, and effort before declaring a winner. Remember, only{" "}
         <span className="font-semibold text-lime-500">one winner</span> can be

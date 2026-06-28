@@ -3,10 +3,11 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
 const UpdateUserRoleModal = ({ isOpen, closeModal, request, refetch }) => {
-  const [updatedRole, setUpdatedRole] = useState(request?.role);
+  
   const axiosSecure = useAxiosSecure();
 
   const updateRole = async () => {
+    const [updatedRole, setUpdatedRole] = useState(request?.role);
     try {
       await axiosSecure.patch("/update-role", {
         email: request?.email,
